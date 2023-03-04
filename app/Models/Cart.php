@@ -15,4 +15,9 @@ class Cart extends Model
         'client_address',
         'factor_code'
     ];
+
+    public function products()
+    {
+        $this->hasMany(Product::class);
+    }
 }

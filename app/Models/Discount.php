@@ -12,4 +12,13 @@ class Discount extends Model
     protected $fillable = [
         'discount'
     ];
+
+    public function product()
+    {
+        $this->belongsTo(Product::class);
+    }
+    public function category()
+    {
+        $this->belongsTo(Category::class);
+    }
 }
