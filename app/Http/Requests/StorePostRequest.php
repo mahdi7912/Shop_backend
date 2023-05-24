@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAgencyRequest extends FormRequest
+class StorePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateAgencyRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,10 +24,7 @@ class UpdateAgencyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'string|min:3|max:20',
-            'phone' => 'string|min:11|max:11',
-            'email' =>  'email|',
-            'address' => 'string|min:12'
+            //
         ];
     }
 }
