@@ -17,8 +17,8 @@ return new class extends Migration
         Schema::create('discounts', function (Blueprint $table) {
             $table->id();
             $table->float('discount');
-            $table->unsignedBigInteger('category_id')->index();
-            $table->unsignedBigInteger('product_id')->index();
+            $table->integer('discountable_id');
+            $table->string('discountable_type');
             $table->timestamps();
         });
     }

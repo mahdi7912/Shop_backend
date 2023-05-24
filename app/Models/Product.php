@@ -13,11 +13,21 @@ class Product extends Model
         'description',
         'remainig',
         'price',
-        'picture'
+        'pictures'
     ];
 
-    public function categorie()
+    public function category()
     {
         $this->belongsTo(Category::class);
+    }
+
+    public function images()
+    {
+        $this->morphMany( Image::class ,'imageable' );
+    }
+
+    public function discounts()
+    {
+        $this->morphMany( Discount::class ,'discountable' );
     }
 }
