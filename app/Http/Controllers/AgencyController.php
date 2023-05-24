@@ -15,17 +15,14 @@ class AgencyController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $agencies = Agency::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json([
+            'data' => [
+                'message' => 'success',
+                'agencies' => $agencies
+            ]
+        ]);
     }
 
     /**
@@ -49,7 +46,6 @@ class AgencyController extends Controller
         return response()->json([
             'message' => 'success'
         ]);
-
     }
 
     /**
@@ -60,7 +56,12 @@ class AgencyController extends Controller
      */
     public function show(Agency $agency)
     {
-        //
+        return response()->json([
+            'data' => [
+                'message' =>  'success',
+                'agency' => $agency
+            ]
+        ]);
     }
 
     /**
@@ -71,19 +72,28 @@ class AgencyController extends Controller
      */
     public function edit(Agency $agency)
     {
-        //
+        return response()->json([
+            'data' => [
+                'message' =>  'success',
+                'agency' => $agency
+            ]
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateAgencyRequest  $request
-     * @param  \App\Models\Agency  $agency
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(UpdateAgencyRequest $request, Agency $agency)
     {
-        //
+
+        $agency->update([
+            "name" => $request->name,
+            "address" => $request->address,
+            "phone" => $request->phone,
+            "email" => $request->email
+        ]);
+
+        return response()->json([
+            'message' => 'success'
+        ]);
     }
 
     /**
@@ -94,6 +104,13 @@ class AgencyController extends Controller
      */
     public function destroy(Agency $agency)
     {
-        //
+
+        $agency->delete();
+        return response()->json([
+            'data' => [
+                'message' => 'success'
+            ]
+
+        ]);
     }
 }
