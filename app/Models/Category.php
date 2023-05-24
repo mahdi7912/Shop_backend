@@ -16,4 +16,18 @@ class Category extends Model
     {
        $this->hasMany(Product::class);
     }
+    public function childrenCategories()
+    {
+        return $this->hasMany(Category::class)->with('categories');
+    }
+
+    public function images()
+    {
+        $this->morphMany( Image::class ,'imageable' );
+    }
+
+    public function discounts()
+    {
+        $this->morphMany( Discount::class ,'discountable' );
+    }
 }
