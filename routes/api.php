@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\PremissionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RregisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
@@ -24,36 +26,45 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-
-Route::post('home', [HomeController::class, 'change_lang']);
-
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 
-Route::prefix('register')->group(function () {
-    Route::get('index', [RregisterController::class, 'index']);
-    Route::post('register', [RregisterController::class, 'register']);
-});
 
-
+/*
+authentication routes
+*/
+// Route::prefix('register')->group(function () {
+//     Route::get('/', [RregisterController::class, 'index']);
+//     Route::post('register', [RregisterController::class, 'register']);
+// });
 Route::prefix('login')->group(function () {
-    Route::get('index', [LoginController::class, 'index']);
+    Route::get('/', [LoginController::class, 'index']);
     Route::post('login', [LoginController::class, 'login']);
 });
 
 
 
 
+/*
+home outes
+*/
+Route::get('/posts', [HomeController::class, 'index']);
+Route::post('change-lang', [HomeController::class, 'change_lang']);
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/discounts', [DiscountController::class, 'index']);
+Route::get('/agencies', [AgencyController::class, 'index']);
+Route::get('agencies/show/{agency}', [AgencyController::class, 'show']);
 
 
+/*
+admin routes
+*/
 Route::prefix('admin')->group(function () {
 
     Route::prefix('discounts')->group(function () {
-        Route::get('index', [DiscountController::class, 'index']);
+        Route::get('/', [DiscountController::class, 'index']);
         Route::get('create', [DiscountController::class, 'create']);
         Route::post('store', [DiscountController::class, 'store']);
         Route::get('edit/{discount}', [DiscountController::class, 'edit']);
@@ -63,7 +74,7 @@ Route::prefix('admin')->group(function () {
 
 
     Route::prefix('products')->group(function () {
-        Route::get('index', [ProductController::class, 'index']);
+        Route::get('/', [ProductController::class, 'index']);
         Route::get('create', [ProductController::class, 'create']);
         Route::post('store', [ProductController::class, 'store']);
         Route::get('edit/{product}', [ProductController::class, 'edit']);
@@ -73,18 +84,17 @@ Route::prefix('admin')->group(function () {
 
 
     Route::prefix('posts')->group(function () {
-        Route::get('index', [PostController::class, 'index']);
-        Route::get('create', [PostController::class, 'create']);
+        Route::get('/', [PostController::class, 'index']);
         Route::post('store', [PostController::class, 'store']);
         Route::get('edit/{post}', [PostController::class, 'edit']);
+        Route::get('show/{post}', [PostController::class, 'show']);
         Route::put('update/{post}', [PostController::class, 'update']);
         Route::delete('delete/{post}', [PostController::class, 'destroy']);
     });
 
 
     Route::prefix('agencies')->group(function () {
-        Route::get('index', [AgencyController::class, 'index']);
-        Route::get('show/{agency}', [AgencyController::class, 'show']);
+        Route::get('/', [AgencyController::class, 'index']);
         Route::post('store', [AgencyController::class, 'store']);
         Route::get('edit/{agency}', [AgencyController::class, 'edit']);
         Route::put('update/{agency}', [AgencyController::class, 'update']);
@@ -93,8 +103,7 @@ Route::prefix('admin')->group(function () {
 
 
     Route::prefix('users')->group(function () {
-        Route::get('index', [UserController::class, 'index']);
-        Route::get('create', [UserController::class, 'create']);
+        Route::get('/', [UserController::class, 'index']);
         Route::post('store', [UserController::class, 'store']);
         Route::get('edit/{user}', [UserController::class, 'edit']);
         Route::put('update/{user}', [UserController::class, 'update']);
@@ -103,8 +112,7 @@ Route::prefix('admin')->group(function () {
 
 
     Route::prefix('categories')->group(function () {
-        Route::get('index', [CategoryController::class, 'index']);
-        Route::get('create', [CategoryController::class, 'create']);
+        Route::get('/', [CategoryController::class, 'index']);
         Route::post('store', [CategoryController::class, 'store']);
         Route::get('edit/{category}', [CategoryController::class, 'edit']);
         Route::put('update/{category}', [CategoryController::class, 'update']);
@@ -112,8 +120,8 @@ Route::prefix('admin')->group(function () {
     });
 
 
-    Route::prefix('role')->group(function () {
-        Route::get('index', [RoleController::class, 'index']);
+    Route::prefix('roles')->group(function () {
+        Route::get('/', [RoleController::class, 'index']);
         Route::get('create', [RoleController::class, 'create']);
         Route::post('store', [RoleController::class, 'store']);
         Route::get('edit/{role}', [RoleController::class, 'edit']);
@@ -124,7 +132,7 @@ Route::prefix('admin')->group(function () {
 
 
     Route::prefix('premissions')->group(function () {
-        Route::get('index', [PremissionController::class, 'index']);
+        Route::get('/', [PremissionController::class, 'index']);
         Route::get('create', [PremissionController::class, 'create']);
         Route::post('store', [PremissionController::class, 'store']);
         Route::get('edit/{premission}', [PremissionController::class, 'edit']);
@@ -132,3 +140,104 @@ Route::prefix('admin')->group(function () {
         Route::post('delete/{premission}', [PremissionController::class, 'destroy']);
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+other site routes
+
+categories index = /categories
+posts index = /posts
+discounts index = /discounts
+products index = /products
+
+
+admin panel routes
+/admin(
+    /user(
+   index =  /
+    create(openning the create form page) = /create
+    store(creating new user) = /store
+    edit(openning the update form page) = /edit/{}
+    update (updating user) = /update/{}
+    delete = /delete/{}
+    )
+    /discounts(
+    index =  /
+    create(openning the create form page) = /create
+    store(creating new discount) = /store
+    edit(openning the update form page) = /edit/{}
+    update (updating discount) = /update/{}
+    delete = /delete/{}
+    )
+    /products(
+    index =  /
+    create(openning the create form page) = /create
+    store(creating new product) = /store
+    edit(openning the update form page) = /edit/{}
+    update (updating product) = /update/{}
+    delete = /delete/{}
+    )
+    /categories(
+    index =  /
+    create(openning the create form page) = /create
+    store(creating new product) = /store
+    edit(openning the update form page) = /edit/{}
+    update (updating product) = /update/{}
+    delete = /delete/{}
+    )
+    /agencies(
+    index =  /
+    create(openning the create form page) = /create
+    store(creating new agency) = /store
+    edit(openning the update form page) = /edit/{}
+    update (updating agency) = /update/{}
+    delete = /delete/{}
+    )
+    /posts(
+    index =  /
+    create(openning the create form page) = /create
+    store(creating new post) = /store
+    edit(openning the update form page) = /edit/{}
+    update (updating post) = /update/{}
+    delete = /delete/{}
+    )
+    /roles(
+    index =  /
+    create(openning the create form page) = /create
+    store(creating new role) = /store
+    edit(openning the update form page) = /edit/{}
+    update (updating role) = /update/{}
+    update-premission (updating roles premissions) = /update-premissions/
+    delete = /delete/{}
+    )
+    /premissions(
+    index =  /
+    create(openning the create form page) = /create
+    store(creating new premissions) = /store
+    edit(openning the update form page) = /edit/{}
+    update (updating premissions) = /update/{}
+    delete = /delete/{}
+    )
+
+)
+
+
+
+*/

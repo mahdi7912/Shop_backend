@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Image;
 
 class PostController extends Controller
 {
@@ -15,28 +16,29 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return response()->json([
+            'data' => [
+                'message' => 'success',
+                'posts' => $posts
+            ]
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StorePostRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StorePostRequest $request)
     {
-        //
+
+        $post = new Post;
+        $post->create($request->all());
+
+        $image = new Image($request->url);
+        $post->images()->save($image);
+
+        return response()->json([
+            'data' => [
+                'message' => $post
+            ]
+        ]);
     }
 
     /**
@@ -47,7 +49,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return response()->json([
+            'message' => 'success',
+            'post' => $post
+        ]);
     }
 
     /**
@@ -58,7 +63,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return response()->json([
+            'message' => 'success',
+            'post' => $post
+        ]);
     }
 
     /**
@@ -70,7 +78,12 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        // dd($request);
+       $post->update($request->all());
+       return response()->json([
+        'message' => 'success',
+        'post' => $post
+    ]);
     }
 
     /**
@@ -81,6 +94,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return response()->json([
+            'message' => 'success',
+
+        ]);
     }
 }
