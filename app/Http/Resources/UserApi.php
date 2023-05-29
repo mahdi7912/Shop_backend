@@ -22,6 +22,7 @@ class UserApi extends ResourceCollection
          $this->collection->map(function ($user)
             {
                 return[
+                    'id' => $user->id,
                     'firstname' => $user->firstname,
                     'lastname' => $user->lastname,
                     'email' => $user->email,

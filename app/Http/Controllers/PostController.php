@@ -18,10 +18,10 @@ class PostController extends Controller
     {
         $posts = Post::all();
         return response()->json([
-            'data' => [
+
                 'message' => 'success',
                 'posts' => $posts
-            ]
+
         ]);
     }
 

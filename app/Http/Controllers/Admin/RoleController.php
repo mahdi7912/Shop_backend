@@ -41,9 +41,7 @@ class RoleController extends Controller
         $premission = Premission::all();
 
         return response()->json([
-            'data' => [
-                'message' => 'success',
-            ],
+            'message' => 'success',
             'premission' => $premission
         ]);
     }
@@ -82,11 +80,9 @@ class RoleController extends Controller
         // $roles = Role::findorfail($role->id);
 
         return response()->json([
-            'data' => [
-                'message' => 'success',
-                'role' => $role,
 
-            ],
+            'message' => 'success',
+            'role' => $role,
             'premissions' => $role->premissions
         ]);
     }
@@ -115,9 +111,8 @@ class RoleController extends Controller
             'description' => $request->description
         ]);
         return response()->json([
-            'data' => [
-                'message' => 'updated successfuly',
-            ],
+
+            'message' => 'updated successfuly',
             'role' => $role,
         ]);
     }
@@ -129,9 +124,8 @@ class RoleController extends Controller
         dd($request->premissions);
         $role['premissions']->update($request['premissions']);
         return response()->json([
-            'data' => [
-                'message' => 'updated successfuly',
-            ],
+
+            'message' => 'updated successfuly',
             'role' => $role,
             'premission' => $role->premissions
         ]);
@@ -148,9 +142,8 @@ class RoleController extends Controller
 
         $role->delete();
         return response()->json([
-            'data' => [
-                'message' => 'deleted successfuly',
-            ],
-        ]);
+
+            'message' => 'deleted successfuly',
+        ],200);
     }
 }

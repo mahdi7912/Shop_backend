@@ -17,11 +17,11 @@ class HomeController extends Controller
     {
         $posts = Post::all();
         return response()->json([
-            'data' => [
+
                 'message' => 'success',
                 'posts' => $posts
-            ]
-        ]);
+
+        ],200);
     }
 
     public function change_lang(Request $request)
