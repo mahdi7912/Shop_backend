@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Resources\CategoryResource;
 
 class CategoryController extends Controller
 {
@@ -15,50 +16,32 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return new CategoryResource($categories);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCategoryRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $category = new Category();
+        $category->name = $request->name;
+        $category->category_id = $request->category_id;
+        $category->save();
+        return response()->json([
+            'message' => "با موفقیت ثبت شد",
+            "category" => $category
+        ] ,200 );
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Category $category)
     {
-        //
+
+        return response()->json([
+            'message' => 'success',
+            'category' => $category
+        ]);
     }
 
     /**
@@ -70,7 +53,14 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+
+        $category->name = $request->name;
+        $category->category_id = $request->category_id;
+        $category->save();
+        return response()->json([
+            'message' => "updated successfully",
+            "category" => $category
+        ] ,200 );
     }
 
     /**
@@ -81,6 +71,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+       $category->delete();
+       return response()->json([
+        'message' => 'deleted successfully',
+
+    ]);
     }
 }

@@ -14,6 +14,16 @@ class Post extends Model
     {
         $this->belongsTo(Category::class);
     }
+    public function tags()
+    {
+        $this->morphMany( Tag::class ,'taggable' );
+    }
+
+    public function images()
+    {
+        $this->morphMany( Image::class ,'imageable' );
+    }
+
     public function User()
     {
         $this->belongsTo(User::class);

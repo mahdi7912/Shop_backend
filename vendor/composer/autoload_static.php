@@ -515,8 +515,8 @@ class ComposerStaticInit0b3e9e737160e4938568f489538095c9
         ),
         'Fruitcake\\Cors\\' => 
         array (
-            0 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
-            1 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
+            0 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
+            1 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
         ),
         'Firebase\\JWT\\' => 
         array (
@@ -641,7 +641,9 @@ class ComposerStaticInit0b3e9e737160e4938568f489538095c9
         'App\\Http\\Requests\\UpdatePremissionRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdatePremissionRequest.php',
         'App\\Http\\Requests\\UpdateProductRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateProductRequest.php',
         'App\\Http\\Requests\\UpdateRoleRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateRoleRequest.php',
+        'App\\Http\\Resources\\CategoryResource' => __DIR__ . '/../..' . '/app/Http/Resources/CategoryResource.php',
         'App\\Http\\Resources\\LoginResource' => __DIR__ . '/../..' . '/app/Http/Resources/LoginResource.php',
+        'App\\Http\\Resources\\ProductResource' => __DIR__ . '/../..' . '/app/Http/Resources/ProductResource.php',
         'App\\Http\\Resources\\RoleResource' => __DIR__ . '/../..' . '/app/Http/Resources/RoleResource.php',
         'App\\Http\\Resources\\UserApi' => __DIR__ . '/../..' . '/app/Http/Resources/UserApi.php',
         'App\\Http\\Resources\\UserResource' => __DIR__ . '/../..' . '/app/Http/Resources/UserResource.php',
@@ -654,6 +656,7 @@ class ComposerStaticInit0b3e9e737160e4938568f489538095c9
         'App\\Models\\Premission' => __DIR__ . '/../..' . '/app/Models/Premission.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
+        'App\\Models\\Tag' => __DIR__ . '/../..' . '/app/Models/Tag.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Policies\\AgencyPolicy' => __DIR__ . '/../..' . '/app/Policies/AgencyPolicy.php',
         'App\\Policies\\CategoryPolicy' => __DIR__ . '/../..' . '/app/Policies/CategoryPolicy.php',
@@ -788,6 +791,7 @@ class ComposerStaticInit0b3e9e737160e4938568f489538095c9
         'Database\\Factories\\PremissionFactory' => __DIR__ . '/../..' . '/database/factories/PremissionFactory.php',
         'Database\\Factories\\ProductFactory' => __DIR__ . '/../..' . '/database/factories/ProductFactory.php',
         'Database\\Factories\\RoleFactory' => __DIR__ . '/../..' . '/database/factories/RoleFactory.php',
+        'Database\\Factories\\TagFactory' => __DIR__ . '/../..' . '/database/factories/TagFactory.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\AgencySeeder' => __DIR__ . '/../..' . '/database/seeders/AgencySeeder.php',
         'Database\\Seeders\\CategorySeeder' => __DIR__ . '/../..' . '/database/seeders/CategorySeeder.php',
