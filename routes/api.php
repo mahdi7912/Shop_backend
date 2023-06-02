@@ -51,6 +51,7 @@ Route::prefix('login')->group(function () {
 home outes
 */
 Route::get('/posts', [HomeController::class, 'index']);
+Route::get('/categories', [CategoryController::class, 'index']);
 Route::post('change-lang', [HomeController::class, 'change_lang']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/discounts', [DiscountController::class, 'index']);

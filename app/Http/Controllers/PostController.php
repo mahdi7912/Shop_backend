@@ -17,6 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+        // dd($posts);
         return response()->json([
 
                 'message' => 'success',
@@ -31,12 +32,9 @@ class PostController extends Controller
         $post = new Post;
         $post->create($request->all());
 
-        $image = new Image($request->url);
-        $post->images()->save($image);
-
         return response()->json([
             'data' => [
-                'message' => $post
+                'message' => 'success'
             ]
         ]);
     }

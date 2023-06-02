@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Discount;
 use App\Http\Requests\StoreDiscountRequest;
 use App\Http\Requests\UpdateDiscountRequest;
+use App\Http\Resources\DiscountResource;
 
 class DiscountController extends Controller
 {
@@ -15,7 +16,8 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        //
+        $discount = Discount::all();
+        return new DiscountResource($discount);
     }
 
     /**
@@ -36,7 +38,12 @@ class DiscountController extends Controller
      */
     public function store(StoreDiscountRequest $request)
     {
-        //
+        $discount = new Discount;
+
+        $discount->create($request->all());
+        return response()->json([
+            'message' => "با موفقیت ثبت شد",
+        ] ,200 );
     }
 
     /**
