@@ -20,22 +20,7 @@ class DiscountController extends Controller
         return new DiscountResource($discount);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreDiscountRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreDiscountRequest $request)
     {
         $discount = new Discount;
@@ -46,26 +31,12 @@ class DiscountController extends Controller
         ] ,200 );
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Discount  $discount
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Discount $discount)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Discount  $discount
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Discount $discount)
     {
-        //
+        return response()->json([
+            'message' => 'success',
+            'category' => $discount
+        ],200);
     }
 
     /**
@@ -77,7 +48,10 @@ class DiscountController extends Controller
      */
     public function update(UpdateDiscountRequest $request, Discount $discount)
     {
-        //
+        $discount->create($request->all());
+        return response()->json([
+            'message' => 'success',
+        ],200);
     }
 
     /**
@@ -88,6 +62,10 @@ class DiscountController extends Controller
      */
     public function destroy(Discount $discount)
     {
-        //
+        $discount->delete();
+        return response()->json([
+         'message' => 'deleted successfully',
+
+     ]);
     }
 }

@@ -54,6 +54,7 @@ Route::get('/posts', [HomeController::class, 'index']);
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::post('change-lang', [HomeController::class, 'change_lang']);
 Route::get('/products', [ProductController::class, 'index']);
+Route::get('products/show/{product}', [ProductController::class, 'show']);
 Route::get('/discounts', [DiscountController::class, 'index']);
 Route::get('/agencies', [AgencyController::class, 'index']);
 Route::get('agencies/show/{agency}', [AgencyController::class, 'show']);
@@ -79,6 +80,7 @@ Route::prefix('admin')->group(function () {
         Route::get('create', [ProductController::class, 'create']);
         Route::post('store', [ProductController::class, 'store']);
         Route::get('edit/{product}', [ProductController::class, 'edit']);
+        Route::get('show/{product}', [ProductController::class, 'show']);
         Route::put('update/{product}', [ProductController::class, 'update']);
         Route::delete('delete/{product}', [ProductController::class, 'destroy']);
     });
@@ -116,6 +118,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [CategoryController::class, 'index']);
         Route::post('store', [CategoryController::class, 'store']);
         Route::get('edit/{category}', [CategoryController::class, 'edit']);
+        Route::get('show/{category}', [CategoryController::class, 'show']);
         Route::put('update/{category}', [CategoryController::class, 'update']);
         Route::delete('delete/{category}', [CategoryController::class, 'destroy']);
     });

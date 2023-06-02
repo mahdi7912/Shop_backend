@@ -16,6 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+
         $categories = Category::all();
         return new CategoryResource($categories);
     }
@@ -31,7 +32,7 @@ class CategoryController extends Controller
         return response()->json([
             'message' => "با موفقیت ثبت شد",
             "category" => $category
-        ] ,200 );
+        ], 200);
     }
 
 
@@ -43,14 +44,15 @@ class CategoryController extends Controller
             'category' => $category
         ]);
     }
+    public function show(Category $category)
+    {
+        return response()->json([
+            'message' => 'success',
+            'category' => $category
+        ]);
+    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCategoryRequest  $request
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(UpdateCategoryRequest $request, Category $category)
     {
 
@@ -60,7 +62,7 @@ class CategoryController extends Controller
         return response()->json([
             'message' => "updated successfully",
             "category" => $category
-        ] ,200 );
+        ], 200);
     }
 
     /**
@@ -71,10 +73,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-       $category->delete();
-       return response()->json([
-        'message' => 'deleted successfully',
+        $category->delete();
+        return response()->json([
+            'message' => 'deleted successfully',
 
-    ]);
+        ]);
     }
 }

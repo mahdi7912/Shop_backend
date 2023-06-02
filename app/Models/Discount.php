@@ -10,15 +10,16 @@ class Discount extends Model
     use HasFactory;
 
     protected $fillable = [
-        'discount'
+        'discount',
+        'name',
+        'discountable_type',
+        'discountable_id'
     ];
 
-    public function product()
+    public function discountable()
     {
-        $this->hasMany(Product::class);
+        $this->morphTo();
     }
-    public function category()
-    {
-        $this->hasMany(Category::class);
-    }
+
+
 }

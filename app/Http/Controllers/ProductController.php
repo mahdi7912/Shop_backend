@@ -18,7 +18,6 @@ class ProductController extends Controller
     {
         $product  = Product::all();
         return new ProductResource($product);
-
     }
 
 
@@ -32,7 +31,22 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $product = new Product;
-        $product->create($request->all());
+        dd($request->file());
+
+        $filename = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $filename);
+        $file_path = public_path('images').$filename;
+
+
+
+        $product->create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'remaining' => $request->remaining,
+            'image' => $file_path,
+            'price' => $request->price,
+            'category_id' => $request->category_id
+        ]);
         return response()->json([
             'message' => 'success',
         ]);
@@ -46,6 +60,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        dd($product->discounts());
         return response()->json([
             'message' => 'success',
             'product' => $product
@@ -66,13 +81,7 @@ class ProductController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateProductRequest  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(UpdateProductRequest $request, Product $product)
     {
         $product->create($request->all());
@@ -91,8 +100,8 @@ class ProductController extends Controller
     {
         $product->delete();
         return response()->json([
-         'message' => 'deleted successfully',
+            'message' => 'deleted successfully',
 
-     ]);
+        ]);
     }
 }
