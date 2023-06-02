@@ -16,18 +16,15 @@ class PremissionController extends Controller
      */
     public function index()
     {
-        //
+
+        $premission  = Premission::all();
+        return response()->json([
+            'message' => 'success',
+            'premission' => $premission
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -37,19 +34,18 @@ class PremissionController extends Controller
      */
     public function store(StorePremissionRequest $request)
     {
-        //
+        $premission = new Premission;
+
+        $premission->create([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
+        return response()->json([
+            'message' => 'success',
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Premission  $premission
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Premission $premission)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -59,7 +55,10 @@ class PremissionController extends Controller
      */
     public function edit(Premission $premission)
     {
-        //
+        return response()->json([
+            'message' => 'success',
+            'premission' => $premission
+        ]);
     }
 
     /**
@@ -71,7 +70,13 @@ class PremissionController extends Controller
      */
     public function update(UpdatePremissionRequest $request, Premission $premission)
     {
-        //
+        $premission->update([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
+        return response()->json([
+            'message' => 'success',
+        ]);
     }
 
     /**
@@ -82,6 +87,10 @@ class PremissionController extends Controller
      */
     public function destroy(Premission $premission)
     {
-        //
+        $premission->delete();
+        return response()->json([
+            'message' => 'deleted successfully',
+
+        ]);
     }
 }

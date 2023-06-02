@@ -24,7 +24,8 @@ class UpdateTagRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+
+            'name' => 'string|unique:roles,name|min:3|max:20',
         ];
     }
 }

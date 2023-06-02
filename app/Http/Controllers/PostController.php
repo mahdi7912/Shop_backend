@@ -29,7 +29,17 @@ class PostController extends Controller
     {
 
         $post = new Post;
-        $post->create($request->all());
+
+        $post->name = $request->name;
+        $post->summary = $request->summary;
+        $post->description = $request->description;
+        $post->category_id = $request->category_id;
+        $post->user_id = $request->user_id;
+
+        $post->save();
+          $post->tags->create([
+            'name' => $request->tags
+        ]);
 
         return response()->json([
             'data' => [

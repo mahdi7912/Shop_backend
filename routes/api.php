@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TagController;
 use App\Http\Middleware\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -26,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -142,6 +144,16 @@ Route::prefix('admin')->group(function () {
         Route::get('edit/{premission}', [PremissionController::class, 'edit']);
         Route::put('update/{premission}', [PremissionController::class, 'update']);
         Route::post('delete/{premission}', [PremissionController::class, 'destroy']);
+    });
+
+
+    Route::prefix('tags')->group(function () {
+        Route::get('/', [TagController::class, 'index']);
+        Route::get('create', [TagController::class, 'create']);
+        Route::post('store', [TagController::class, 'store']);
+        Route::get('edit/{premission}', [TagController::class, 'edit']);
+        Route::put('update/{premission}', [TagController::class, 'update']);
+        Route::post('delete/{premission}', [TagController::class, 'destroy']);
     });
 });
 

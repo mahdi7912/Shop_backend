@@ -24,7 +24,8 @@ class UpdatePremissionRequest extends FormRequest
     public function rules()
     {
             return [
-                'premissions.*' => 'exists:premissions,id'
+                'name' => 'string|exists:premissions,name',
+                'description' => 'string'
             ];
 
     }

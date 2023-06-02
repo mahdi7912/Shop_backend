@@ -31,19 +31,11 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $product = new Product;
-        dd($request->file());
-
-        $filename = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('images'), $filename);
-        $file_path = public_path('images').$filename;
-
-
 
         $product->create([
             'name' => $request->name,
             'description' => $request->description,
             'remaining' => $request->remaining,
-            'image' => $file_path,
             'price' => $request->price,
             'category_id' => $request->category_id
         ]);
@@ -60,7 +52,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        dd($product->discounts());
         return response()->json([
             'message' => 'success',
             'product' => $product
