@@ -24,7 +24,11 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'string',
+            'description' => 'string',
+            'price' => 'numeric',
+            'remaining' => 'numeric',
+            'category_id' => 'numeric',
         ];
     }
 }
