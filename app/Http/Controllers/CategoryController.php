@@ -77,6 +77,6 @@ class CategoryController extends Controller
         return response()->json([
             'message' => 'deleted successfully',
 
-        ]);
+        ], 200);
     }
 }

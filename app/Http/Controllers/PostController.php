@@ -44,7 +44,7 @@ class PostController extends Controller
             'data' => [
                 'message' => 'success'
             ]
-        ]);
+        ], 200);
     }
 
     /**
@@ -89,7 +89,7 @@ class PostController extends Controller
         return response()->json([
             'message' => 'success',
             'post' => $post
-        ]);
+        ], 200);
     }
 
     public function storeTags(PostTagsRequest $request , Post $post)
@@ -105,6 +105,6 @@ class PostController extends Controller
         return response()->json([
             'message' => 'success',
 
-        ]);
+        ], 200);
     }
 }

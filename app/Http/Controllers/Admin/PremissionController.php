@@ -42,7 +42,7 @@ class PremissionController extends Controller
         ]);
         return response()->json([
             'message' => 'success',
-        ]);
+        ], 200);
     }
 
 
@@ -76,7 +76,7 @@ class PremissionController extends Controller
         ]);
         return response()->json([
             'message' => 'success',
-        ]);
+        ], 200);
     }
 
     /**
@@ -91,6 +91,6 @@ class PremissionController extends Controller
         return response()->json([
             'message' => 'deleted successfully',
 
-        ]);
+        ], 200);
     }
 }

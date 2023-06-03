@@ -114,7 +114,7 @@ class RoleController extends Controller
 
             'message' => 'updated successfuly',
             'role' => $role,
-        ]);
+        ], 200);
     }
 
 

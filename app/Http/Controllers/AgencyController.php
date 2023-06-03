@@ -93,7 +93,7 @@ class AgencyController extends Controller
 
         return response()->json([
             'message' => 'success'
-        ]);
+        ], 200);
     }
 
     /**
