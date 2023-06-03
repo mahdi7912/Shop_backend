@@ -95,6 +95,7 @@ Route::prefix('admin')->group(function () {
         Route::get('show/{post}', [PostController::class, 'show']);
         Route::put('update/{post}', [PostController::class, 'update']);
         Route::delete('delete/{post}', [PostController::class, 'destroy']);
+        Route::post('post-tags/{post}', [PostController::class, 'storeTags']);
     });
 
 

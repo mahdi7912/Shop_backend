@@ -16,18 +16,15 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::all();
+        return response()->json([
+
+                'message' => 'success',
+                'posts' => $tags
+
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -44,16 +41,7 @@ class TagController extends Controller
     ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tag $tag)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -63,7 +51,12 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return response()->json([
+
+            'message' => 'success',
+            'posts' => $tag
+
+    ]);
     }
 
     /**
@@ -75,7 +68,11 @@ class TagController extends Controller
      */
     public function update(UpdateTagRequest $request, Tag $tag)
     {
-        //
+        $tag = new Tag;
+        $tag->create($request->all());
+        return response()->json([
+          'message' => 'success',
+      ]);
     }
 
     /**
@@ -86,6 +83,10 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        return response()->json([
+            'message' => 'success',
+
+        ]);
     }
 }

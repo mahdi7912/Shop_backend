@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostTagsRequest;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
@@ -19,8 +20,8 @@ class PostController extends Controller
         $posts = Post::all();
         return response()->json([
 
-                'message' => 'success',
-                'posts' => $posts
+            'message' => 'success',
+            'posts' => $posts
 
         ]);
     }
@@ -37,7 +38,7 @@ class PostController extends Controller
         $post->user_id = $request->user_id;
 
         $post->save();
-          $post->tags->create([
+        $post->tags->create([
             'name' => $request->tags
         ]);
 
@@ -86,19 +87,20 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
         // dd($request);
-       $post->update($request->all());
-       return response()->json([
-        'message' => 'success',
-        'post' => $post
-    ]);
+        $post->update($request->all());
+        return response()->json([
+            'message' => 'success',
+            'post' => $post
+        ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
+    public function storeTags(PostTagsRequest $request , Post $post)
+    {
+        $input = $request->all();
+        $input['tags'] = $input['tags'] ?? [];
+        $post->tags->sync($input['tags']);
+    }
+
     public function destroy(Post $post)
     {
         $post->delete();
