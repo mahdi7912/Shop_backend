@@ -38,9 +38,7 @@ class PostController extends Controller
         $post->user_id = $request->user_id;
 
         $post->save();
-        $post->tags->create([
-            'name' => $request->tags
-        ]);
+
 
         return response()->json([
             'data' => [
