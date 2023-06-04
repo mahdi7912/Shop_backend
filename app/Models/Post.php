@@ -28,4 +28,6 @@ class Post extends Model
     {
         $this->belongsTo(User::class);
     }
+
+    protected $casts = ['image' => 'array'];
 }

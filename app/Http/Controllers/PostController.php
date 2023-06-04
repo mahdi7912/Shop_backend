@@ -6,6 +6,7 @@ use App\Http\Requests\PostTagsRequest;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Http\Services\Image\ImageService;
 use App\Models\Image;
 
 class PostController extends Controller
@@ -21,23 +22,32 @@ class PostController extends Controller
         return response()->json([
 
             'message' => 'success',
-            'posts' => $posts
-
+            'posts' => $posts,
         ]);
     }
 
-    public function store(StorePostRequest $request)
+    public function store(StorePostRequest $request, ImageService $imageService)
     {
 
-        $post = new Post;
+        $input = $request->all();
+        if ($request->hasFile('image')) {
 
-        $post->name = $request->name;
-        $post->summary = $request->summary;
-        $post->description = $request->description;
-        $post->category_id = $request->category_id;
-        $post->user_id = $request->user_id;
+            // dd('hi');
 
-        $post->save();
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'posts');
+
+            $result = $imageService->createIndexAndSave($request->file('image'));
+
+            if ($result === false) {
+                return response()->json([
+                    'data' => [
+                        'message' => 'error'
+                    ]
+                ], 403);
+            }
+        }
+        $input['image'] = $result;
+        $post = Post::create($input);
 
 
         return response()->json([
@@ -92,7 +102,7 @@ class PostController extends Controller
         ], 200);
     }
 
-    public function storeTags(PostTagsRequest $request , Post $post)
+    public function storeTags(PostTagsRequest $request, Post $post)
     {
         $input = $request->all();
         $input['tags'] = $input['tags'] ?? [];

@@ -133,7 +133,6 @@ Route::prefix('admin')->group(function () {
         Route::post('store', [RoleController::class, 'store']);
         Route::get('edit/{role}', [RoleController::class, 'edit']);
         Route::put('update/{role}', [RoleController::class, 'update']);
-        Route::put('update-primission/{role}', [RoleController::class, 'updatePremission'])->name('role.premission.update');
         Route::delete('delete/{role}', [RoleController::class, 'destroy']);
     });
 
@@ -154,7 +153,7 @@ Route::prefix('admin')->group(function () {
         Route::post('store', [TagController::class, 'store']);
         Route::get('edit/{premission}', [TagController::class, 'edit']);
         Route::put('update/{premission}', [TagController::class, 'update']);
-        Route::post('delete/{premission}', [TagController::class, 'destroy']);
+        Route::delete('delete/{premission}', [TagController::class, 'destroy']);
     });
 });
 

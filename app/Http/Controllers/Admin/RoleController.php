@@ -54,7 +54,7 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        // dd($request);
+        // dd($request->premission);
 
         $input = $request -> all();
         $role = Role::create($input);
@@ -97,19 +97,18 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
 
-        // $role['premissions'] = $role['premissions'] ?? [];
-        // $role['premissions']->update($request['premissions']);
 
 
 
-        // $role->update([
-        //     'name' => $request->name,
-        //     'description' => $request->description
-        // ]);
+        $input = $request -> all();
         $role->update([
             'name' => $request->name,
             'description' => $request->description
         ]);
+
+        $input['premissions'] = $input['premissions'] ?? [];
+        $role->premissions()->sync($input['premissions']);
+
         return response()->json([
 
             'message' => 'updated successfuly',
@@ -117,20 +116,6 @@ class RoleController extends Controller
         ], 200);
     }
 
-
-    public function updatePremission(UpdatePremissionRequest $request , Role $role)
-    {
-        // $role['premissions'] = $role['premissions'] ?? [];
-        dd($request->premissions);
-        $role['premissions']->update($request['premissions']);
-        return response()->json([
-
-            'message' => 'updated successfuly',
-            'role' => $role,
-            'premission' => $role->premissions
-        ]);
-
-    }
     /**
      * Remove the specified resource from storage.
      *
