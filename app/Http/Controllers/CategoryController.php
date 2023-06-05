@@ -60,7 +60,7 @@ class CategoryController extends Controller
         $category->category_id = $request->category_id;
         $category->save();
         return response()->json([
-            'message' => "updated successfully",
+            'message' => "با موفقیت بروزرسانی شد",
             "category" => $category
         ], 200);
     }
@@ -75,7 +75,7 @@ class CategoryController extends Controller
     {
         $category->delete();
         return response()->json([
-            'message' => 'deleted successfully',
+            'message' => 'با موفقیت حذف شد',
 
         ], 200);
     }

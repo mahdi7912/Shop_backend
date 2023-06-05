@@ -36,7 +36,8 @@ class PostController extends Controller
 
             $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'posts');
 
-            $result = $imageService->createIndexAndSave($request->file('image'));
+            // $result = $imageService->createIndexAndSave($request->file('image'));
+            $result = $imageService->save($request->file('image'));
 
             if ($result === false) {
                 return response()->json([
@@ -46,8 +47,16 @@ class PostController extends Controller
                 ], 403);
             }
         }
+
         $input['image'] = $result;
-        $post = Post::create($input);
+        Post::create([
+            'name'  =>  $input['name'],
+            'summary'  =>  $input['summary'],
+            'description'  =>  $input['description'],
+            'category_id'  =>  $input['category_id'],
+            'user_id'  =>  $input['user_id'],
+            'image'  =>  $input['image'],
+        ]);
 
 
         return response()->json([
@@ -92,10 +101,42 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post, ImageService $imageService)
     {
-        // dd($request);
-        $post->update($request->all());
+
+
+        $input = $request->all();
+
+        dd($input);
+        if ($request->hasFile('image')) {
+
+            if (!empty($post->image)) {
+                $imageService->deleteDirectoryAndFiles($post->image);
+            }
+
+
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'posts');
+
+            $result = $imageService->save($request->file('image'));
+
+            if ($result === false) {
+                return response()->json([
+                    'data' => [
+                        'message' => 'error'
+                    ]
+                ], 403);
+            }
+        }
+
+        $input['image'] = $result;
+         $post->update([
+            'name'  =>  $input['name'],
+            'summary'  =>  $input['summary'],
+            'description'  =>  $input['description'],
+            'category_id'  =>  $input['category_id'],
+            'user_id'  =>  $input['user_id'],
+            'image'  =>  $input['image'],
+        ]);
         return response()->json([
             'message' => 'success',
             'post' => $post
@@ -109,8 +150,9 @@ class PostController extends Controller
         $post->tags->sync($input['tags']);
     }
 
-    public function destroy(Post $post)
+    public function destroy(Post $post , ImageService $imageService)
     {
+        $imageService->deleteImage($post->image);
         $post->delete();
         return response()->json([
             'message' => 'success',

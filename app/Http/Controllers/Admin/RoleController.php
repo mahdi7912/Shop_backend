@@ -12,6 +12,7 @@ use App\Models\Premission;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 use function PHPSTORM_META\type;
 
@@ -25,7 +26,7 @@ class RoleController extends Controller
     public function index()
     {
 
-
+dd(Auth::user());
         $role = Role::all();
 
         return new RoleResource($role);

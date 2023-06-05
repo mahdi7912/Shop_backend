@@ -79,8 +79,9 @@ class ImageService extends ImageToolsService
 
     public function deleteImage($imagePath)
     {
+// dd(public_path($imagePath));
         if (file_exists($imagePath)) {
-            unlink($imagePath);
+            unlink(public_path($imagePath));
         }
     }
 
@@ -105,7 +106,7 @@ class ImageService extends ImageToolsService
             if (is_dir($file)) {
                 $this->deleteDirectoryAndFiles($file);
             } else {
-                unlink($file);
+                unlink(public_path($file));
             }
         }
         $result = rmdir($directory);

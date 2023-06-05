@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TagController;
 use App\Http\Middleware\Language;
 use Illuminate\Http\Request;
@@ -41,10 +42,11 @@ authentication routes
 //     Route::get('/', [RregisterController::class, 'index']);
 //     Route::post('register', [RregisterController::class, 'register']);
 // });
-Route::prefix('login')->group(function () {
-    Route::get('/', [LoginController::class, 'index']);
+
     Route::post('login', [LoginController::class, 'login']);
-});
+
+    Route::post('/logout', [LoginController::class, 'login']);
+
 
 
 
@@ -87,6 +89,14 @@ Route::prefix('admin')->group(function () {
         Route::delete('delete/{product}', [ProductController::class, 'destroy']);
     });
 
+    Route::prefix('sliders')->group(function () {
+        Route::get('/', [SliderController::class, 'index']);
+        Route::post('store', [SliderController::class, 'store']);
+        Route::get('edit/{slider}', [SliderController::class, 'edit']);
+        Route::get('show/{slider}', [SliderController::class, 'show']);
+        Route::put('update/{slider}', [SliderController::class, 'update']);
+        Route::delete('delete/{slider}', [SliderController::class, 'destroy']);
+    });
 
     Route::prefix('posts')->group(function () {
         Route::get('/', [PostController::class, 'index']);
