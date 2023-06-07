@@ -112,7 +112,7 @@ class RoleController extends Controller
 
         return response()->json([
 
-            'message' => 'updated successfuly',
+            'message' => 'نقش ' . $role->name .' با موفقیت بروزرسانی شد',
             'role' => $role,
         ], 200);
     }
@@ -129,7 +129,7 @@ class RoleController extends Controller
         $role->delete();
         return response()->json([
 
-            'message' => 'deleted successfuly',
+            'message' => 'نقش ' . $role->name .' با موفقیت حذف شد',
         ],200);
     }
 }

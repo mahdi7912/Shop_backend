@@ -41,7 +41,7 @@ class PremissionController extends Controller
             'description' => $request->description
         ]);
         return response()->json([
-            'message' => 'success',
+            'message' => 'دسترسی ' . $premission->name .' با موفقیت اضافه شد',
         ], 200);
     }
 
@@ -75,7 +75,7 @@ class PremissionController extends Controller
             'description' => $request->description
         ]);
         return response()->json([
-            'message' => 'success',
+            'message' => 'دسترسی ' . $premission->name .' با موفقیت بروزرسانی شد',
         ], 200);
     }
 
@@ -89,7 +89,7 @@ class PremissionController extends Controller
     {
         $premission->delete();
         return response()->json([
-            'message' => 'deleted successfully',
+            'message' => 'دسترسی ' . $premission->name .' با موفقیت حذف شد',
 
         ], 200);
     }
