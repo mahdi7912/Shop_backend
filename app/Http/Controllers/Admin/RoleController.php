@@ -26,7 +26,6 @@ class RoleController extends Controller
     public function index()
     {
 
-dd(Auth::user());
         $role = Role::all();
 
         return new RoleResource($role);
@@ -64,7 +63,7 @@ dd(Auth::user());
         $role->premissions()->sync($input['premissions']);
 
         return response()->json([
-            'message' => 'added successfuly',
+            'message' => 'added '. $role->name .' successfuly',
         ],200);
 
     }

@@ -46,9 +46,10 @@ class PostController extends Controller
                     ]
                 ], 403);
             }
-        }
 
         $input['image'] = $result;
+        }
+
         Post::create([
             'name'  =>  $input['name'],
             'summary'  =>  $input['summary'],

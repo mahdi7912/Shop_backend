@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Agency;
 use App\Http\Requests\StoreAgencyRequest;
 use App\Http\Requests\UpdateAgencyRequest;
+use App\Http\Services\Image\ImageService;
 
 class AgencyController extends Controller
 {
@@ -31,21 +32,44 @@ class AgencyController extends Controller
      * @param  \App\Http\Requests\StoreAgencyRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAgencyRequest $request)
+    public function store(StoreAgencyRequest $request, ImageService $imageService)
     {
+        $input = $request->all();
+        if ($request->hasFile('image')) {
 
-        $agency = new Agency;
+            dd('hi');
 
-        $agency->create([
-            "name" => $request->name,
-            "address" => $request->address,
-            "phone" => $request->phone,
-            "email" => $request->email
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'agencies');
+
+            // $result = $imageService->createIndexAndSave($request->file('image'));
+            $result = $imageService->save($request->file('image'));
+
+            if ($result === false) {
+                return response()->json([
+                    'data' => [
+                        'message' => 'error'
+                    ]
+                ], 403);
+            }
+
+        $input['image'] = $result;
+        }
+
+        Agency::create([
+            'name'  =>  $input['name'],
+            'phone'  =>  $input['phone'],
+            'address'  =>  $input['address'],
+            'email'  =>  $input['email'],
+            'image'  =>  $input['image'],
         ]);
+
 
         return response()->json([
-            'message' => 'success'
-        ]);
+            'data' => [
+                'message' => 'success'
+            ]
+        ], 200);
+
     }
 
     /**
@@ -102,15 +126,14 @@ class AgencyController extends Controller
      * @param  \App\Models\Agency  $agency
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Agency $agency)
+    public function destroy(Agency $agency, ImageService $imageService)
     {
 
+        $imageService->deleteImage($agency->image);
         $agency->delete();
         return response()->json([
+            'message' => 'success',
 
-                'message' => 'success'
-
-
-        ],200);
+        ], 200);
     }
 }
