@@ -49,8 +49,8 @@ class PostController extends Controller
 
         $input['image'] = $result;
         }
-
-        Post::create([
+        $post = new Post;
+        $post->create([
             'name'  =>  $input['name'],
             'summary'  =>  $input['summary'],
             'description'  =>  $input['description'],
@@ -62,7 +62,8 @@ class PostController extends Controller
 
         return response()->json([
             'data' => [
-                'message' => 'success'
+                'message' => 'success',
+                'agency' => Post::latest()->first()
             ]
         ], 200);
     }
@@ -140,7 +141,7 @@ class PostController extends Controller
         ]);
         return response()->json([
             'message' => 'success',
-            'post' => $post
+            'agency' => Post::latest()->first()
         ], 200);
     }
 

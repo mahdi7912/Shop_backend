@@ -98,9 +98,6 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
 
-
-
-
         $input = $request -> all();
         $role->update([
             'name' => $request->name,

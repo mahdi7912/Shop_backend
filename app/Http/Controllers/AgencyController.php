@@ -20,10 +20,10 @@ class AgencyController extends Controller
 
         return response()->json([
 
-                'message' => 'success',
-                'agencies' => $agencies
+            'message' => 'success',
+            'agencies' => $agencies
 
-        ],200);
+        ], 200);
     }
 
     /**
@@ -52,10 +52,10 @@ class AgencyController extends Controller
                 ], 403);
             }
 
-        $input['image'] = $result;
+            $input['image'] = $result;
         }
-
-        Agency::create([
+        $agency = new Agency;
+        $agency->create([
             'name'  =>  $input['name'],
             'phone'  =>  $input['phone'],
             'address'  =>  $input['address'],
@@ -66,10 +66,10 @@ class AgencyController extends Controller
 
         return response()->json([
             'data' => [
-                'message' => 'success'
+                'message' => 'success',
+                'agency' => Agency::latest()->first()
             ]
         ], 200);
-
     }
 
     /**
@@ -82,10 +82,10 @@ class AgencyController extends Controller
     {
         return response()->json([
 
-                'message' =>  'success',
-                'agency' => $agency
+            'message' =>  'success',
+            'agency' => $agency
 
-        ],200);
+        ], 200);
     }
 
     /**
@@ -98,10 +98,10 @@ class AgencyController extends Controller
     {
         return response()->json([
 
-                'message' =>  'success',
-                'agency' => $agency
+            'message' =>  'success',
+            'agency' => $agency
 
-        ],200);
+        ], 200);
     }
 
 
@@ -116,7 +116,8 @@ class AgencyController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'success'
+            'message' => 'success',
+            'agency' => Agency::latest()->first()
         ], 200);
     }
 

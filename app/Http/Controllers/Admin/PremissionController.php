@@ -42,6 +42,8 @@ class PremissionController extends Controller
         ]);
         return response()->json([
             'message' => 'دسترسی ' . $premission->name .' با موفقیت اضافه شد',
+
+            'premission' => $premission
         ], 200);
     }
 
@@ -76,6 +78,7 @@ class PremissionController extends Controller
         ]);
         return response()->json([
             'message' => 'دسترسی ' . $premission->name .' با موفقیت بروزرسانی شد',
+            'premission' => $premission
         ], 200);
     }
 

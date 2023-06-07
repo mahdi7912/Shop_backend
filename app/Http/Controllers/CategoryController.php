@@ -31,7 +31,7 @@ class CategoryController extends Controller
         $category->save();
         return response()->json([
             'message' => "با موفقیت ثبت شد",
-            "category" => $category
+            'agency' => Category::latest()->first()
         ], 200);
     }
 
@@ -61,7 +61,7 @@ class CategoryController extends Controller
         $category->save();
         return response()->json([
             'message' => "با موفقیت بروزرسانی شد",
-            "category" => $category
+            'agency' => Category::latest()->first()
         ], 200);
     }
 
