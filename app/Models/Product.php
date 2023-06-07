@@ -11,9 +11,10 @@ class Product extends Model
     protected $fillable = [
         'name',
         'description',
-        'remainig',
+        'remaining',
         'price',
-        'pictures'
+        'pictures',
+        'category_id'
     ];
 
     public function category()
@@ -24,6 +25,11 @@ class Product extends Model
     public function images()
     {
         $this->morphMany( Image::class ,'imageable' );
+    }
+
+    public function tags()
+    {
+        $this->morphMany( Tag::class ,'taggable' );
     }
 
     public function discounts()

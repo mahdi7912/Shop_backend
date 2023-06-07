@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('agencies', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->string('image')->nullable();
             $table->string("phone");
             $table->text("address");
             $table->string("email")->unique();

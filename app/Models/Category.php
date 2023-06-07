@@ -26,8 +26,8 @@ class Category extends Model
         $this->morphMany( Image::class ,'imageable' );
     }
 
-    public function discounts()
+    public function discount()
     {
-        $this->morphMany( Discount::class ,'discountable' );
+        $this->morphOne( Discount::class ,'discountable' );
     }
 }

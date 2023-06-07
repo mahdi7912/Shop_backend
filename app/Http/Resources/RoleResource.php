@@ -19,10 +19,11 @@ class RoleResource extends ResourceCollection
             $this->collection->map(function ($role)
                {
                    return[
-                       'name' => $role->name,
-                       'description' => $role->description,
-                       'status' => $role->status,
-                       'premissions' => $role->premissions
+                        'id' => $role->id,
+                        'name' => $role->name,
+                        'description' => $role->description,
+                        'status' => $role->status,
+                        'premissions' => $role->premissions
                    ];
                }),
            ];

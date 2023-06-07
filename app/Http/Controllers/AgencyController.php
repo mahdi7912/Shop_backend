@@ -18,11 +18,11 @@ class AgencyController extends Controller
         $agencies = Agency::all();
 
         return response()->json([
-            'data' => [
+
                 'message' => 'success',
                 'agencies' => $agencies
-            ]
-        ]);
+
+        ],200);
     }
 
     /**
@@ -57,11 +57,11 @@ class AgencyController extends Controller
     public function show(Agency $agency)
     {
         return response()->json([
-            'data' => [
+
                 'message' =>  'success',
                 'agency' => $agency
-            ]
-        ]);
+
+        ],200);
     }
 
     /**
@@ -73,11 +73,11 @@ class AgencyController extends Controller
     public function edit(Agency $agency)
     {
         return response()->json([
-            'data' => [
+
                 'message' =>  'success',
                 'agency' => $agency
-            ]
-        ]);
+
+        ],200);
     }
 
 
@@ -93,7 +93,7 @@ class AgencyController extends Controller
 
         return response()->json([
             'message' => 'success'
-        ]);
+        ], 200);
     }
 
     /**
@@ -107,10 +107,10 @@ class AgencyController extends Controller
 
         $agency->delete();
         return response()->json([
-            'data' => [
-                'message' => 'success'
-            ]
 
-        ]);
+                'message' => 'success'
+
+
+        ],200);
     }
 }

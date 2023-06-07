@@ -13,7 +13,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,12 @@ class StorePostRequest extends FormRequest
      */
     public function rules()
     {
+        // dd($this->request);
         return [
-            //
+            'url' => 'string',
+            'name' => 'required|string|min:3|max:20',
+            'description' => 'required|string|min:3|max:500',
+            'summary' => 'required|string|min:3|max:100',
         ];
     }
 }

@@ -21,5 +21,8 @@ class Agency extends Model
         $this->morphMany( Image::class ,'imageable' );
     }
 
-
+    public function tags()
+    {
+        $this->morphMany( Tag::class ,'taggable' );
+    }
 }

@@ -27,7 +27,7 @@ class LoginController extends Controller
         ]);
 
 
-        if (!auth()-> attempt($login)) {
+        if (!auth()->attempt($login)) {
             return response([
                 'data'=> [
                 'Message' => "invalid data",

@@ -13,7 +13,7 @@ class StorePremissionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class StorePremissionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'string|required|unique:premissions,name',
+            'description' => 'string|required'
         ];
     }
 }

@@ -8,17 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-        'description'
-    ];
+    protected $guarded = ['id'];
 
     public function Category()
     {
         $this->belongsTo(Category::class);
     }
+    public function tags()
+    {
+        $this->morphMany( Tag::class ,'taggable' );
+    }
+
+    public function images()
+    {
+        $this->morphMany( Image::class ,'imageable' );
+    }
+
     public function User()
     {
         $this->belongsTo(User::class);
     }
+
+    protected $casts = ['image' => 'array'];
 }

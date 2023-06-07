@@ -31,6 +31,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+    public function premissions()
+    {
+        return $this->belongsToMany(Premission::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

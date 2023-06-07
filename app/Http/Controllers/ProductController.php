@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
@@ -15,18 +16,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $product  = Product::all();
+        return new ProductResource($product);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -36,7 +30,18 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $product = new Product;
+
+        $product->create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'remaining' => $request->remaining,
+            'price' => $request->price,
+            'category_id' => $request->category_id
+        ]);
+        return response()->json([
+            'message' => 'success',
+        ]);
     }
 
     /**
@@ -47,7 +52,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return response()->json([
+            'message' => 'success',
+            'product' => $product
+        ]);
     }
 
     /**
@@ -58,19 +66,19 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return response()->json([
+            'message' => 'success',
+            'product' => $product
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateProductRequest  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $product->create($request->all());
+        return response()->json([
+            'message' => 'success',
+        ]);
     }
 
     /**
@@ -81,6 +89,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return response()->json([
+            'message' => 'deleted successfully',
+
+        ]);
     }
 }

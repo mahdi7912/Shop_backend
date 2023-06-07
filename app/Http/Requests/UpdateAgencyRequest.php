@@ -26,7 +26,7 @@ class UpdateAgencyRequest extends FormRequest
         return [
             'name' => 'string|min:3|max:20',
             'phone' => 'string|min:11|max:11',
-            'email' =>  'email|',
+            'email' =>  'email',
             'address' => 'string|min:12'
         ];
     }

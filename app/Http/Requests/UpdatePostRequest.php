@@ -13,7 +13,7 @@ class UpdatePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,13 @@ class UpdatePostRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            //
+            'name' => 'string|min:3|max:20',
+            'description' => 'string|min:3|max:200',
+            'category_id' => 'exists:categories,id',
+            'user_id' => 'exists:users,id',
+
         ];
     }
 }
