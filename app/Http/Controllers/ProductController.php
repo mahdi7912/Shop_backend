@@ -79,7 +79,7 @@ class ProductController extends Controller
         $product->create($request->all());
         return response()->json([
             'message' => 'success',
-            'agency' => Product::latest()->first()
+            'product' => $product
         ]);
     }
 

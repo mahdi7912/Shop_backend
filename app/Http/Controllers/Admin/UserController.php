@@ -45,7 +45,8 @@ class UserController extends Controller
         ]);
 
         return response()->json([
-            'message' => "با موفقیت ثبت شد"
+            'message' => "با موفقیت ثبت شد",
+            'agency' => User::latest()->first()
         ] ,200 );
 
     }
@@ -99,7 +100,8 @@ class UserController extends Controller
         ]);
 
         return response()->json([
-            'message' => "با موفقیت ثبت شد"
+            'message' => "با موفقیت ثبت شد",
+            'product' => $user
         ] ,200 );
     }
 

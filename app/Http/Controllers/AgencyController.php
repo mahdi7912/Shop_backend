@@ -117,7 +117,7 @@ class AgencyController extends Controller
 
         return response()->json([
             'message' => 'success',
-            'agency' => Agency::latest()->first()
+            'agency' => $agency
         ], 200);
     }
 

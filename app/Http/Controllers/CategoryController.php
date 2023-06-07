@@ -61,7 +61,7 @@ class CategoryController extends Controller
         $category->save();
         return response()->json([
             'message' => "با موفقیت بروزرسانی شد",
-            'agency' => Category::latest()->first()
+            "category" => $category
         ], 200);
     }
 
