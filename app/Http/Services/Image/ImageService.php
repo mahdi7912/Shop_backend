@@ -10,6 +10,7 @@ class ImageService extends ImageToolsService
 
     public function save($image)
     {
+        // dd($image);
         //set image
         $this->setImage($image);
         //execute provider

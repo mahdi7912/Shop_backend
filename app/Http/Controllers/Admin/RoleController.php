@@ -55,12 +55,13 @@ dd(Auth::user());
      */
     public function store(StoreRoleRequest $request)
     {
-        // dd($request->premission);
 
         $input = $request -> all();
+
+        // dd($input['premission_id']);
         $role = Role::create($input);
-        $input['premissions'] = $input['premissions'] ?? [];
-        $role->premissions()->sync($input['premissions']);
+        $input['premission_id'] = $input['premission_id'] ?? [];
+        $role->premissions()->sync($input['premission_id']);
 
         return response()->json([
             'message' => 'added successfuly',
