@@ -60,8 +60,8 @@ dd(Auth::user());
 
         // dd($input['premission_id']);
         $role = Role::create($input);
-        $input['premission_id'] = $input['premission_id'] ?? [];
-        $role->premissions()->sync($input['premission_id']);
+        $input['premissions'] = $input['premissions'] ?? [];
+        $role->premissions()->sync($input['premissions']);
 
         return response()->json([
             'message' => 'added successfuly',
