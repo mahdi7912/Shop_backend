@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        Auth::loginUsingId(1);
     }
 }
