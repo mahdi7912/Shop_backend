@@ -13,7 +13,8 @@ class Agency extends Model
         'name',
         'phone',
         'address',
-        'email'
+        'email',
+        'image'
     ];
 
     public function images()

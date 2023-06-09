@@ -34,27 +34,23 @@ class AgencyController extends Controller
      */
     public function store(StoreAgencyRequest $request, ImageService $imageService)
     {
+        $agency = new Agency();
+
         $input = $request->all();
+
         if ($request->hasFile('image')) {
-
-            dd('hi');
-
             $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'agencies');
 
-            // $result = $imageService->createIndexAndSave($request->file('image'));
             $result = $imageService->save($request->file('image'));
-
             if ($result === false) {
-                return response()->json([
-                    'data' => [
-                        'message' => 'error'
-                    ]
-                ], 403);
-            }
 
+                return response()->json([
+                    'message' => 'error loading image',
+                ],403);
+            }
             $input['image'] = $result;
         }
-        $agency = new Agency;
+
         $agency->create([
             'name'  =>  $input['name'],
             'phone'  =>  $input['phone'],
