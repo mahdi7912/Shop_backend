@@ -43,7 +43,7 @@ class PremissionController extends Controller
         return response()->json([
             'message' => 'دسترسی ' . $premission->name .' با موفقیت اضافه شد',
 
-            'premission' => $premission
+            'premission' => Premission::latest()->first()
         ], 200);
     }
 

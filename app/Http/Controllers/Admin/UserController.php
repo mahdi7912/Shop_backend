@@ -36,13 +36,17 @@ class UserController extends Controller
     {
         $user = new User;
 
-        $user->create([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'phone' => $request->phone,
-            'password' => Hash::make($request->password),
-            'email' => $request->email
-        ]);
+        $input = $request -> all();
+
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->phone = $request->phone;
+        $user->password = Hash::make($request->password);
+        $user->email = $request->email;
+        $user->save();
+
+        $input['roles'] = $input['roles'] ?? [];
+        $user->roles()->sync($input['roles']);
 
         return response()->json([
             'message' => "با موفقیت ثبت شد",

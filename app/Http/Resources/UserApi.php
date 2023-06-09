@@ -19,14 +19,15 @@ class UserApi extends ResourceCollection
         // return parent::toArray($request);
 
         return [
-         $this->collection->map(function ($user)
+         $this->collection->map(function ($user , $role)
             {
                 return[
                     'id' => $user->id,
                     'firstname' => $user->firstname,
                     'lastname' => $user->lastname,
                     'email' => $user->email,
-                    'phone' => $user->phone
+                    'phone' => $user->phone,
+                    'roles' => $user->roles
                 ];
             }),
         ];

@@ -30,6 +30,7 @@ class PostController extends Controller
     {
 
         $input = $request->all();
+        dd($request);
         if ($request->hasFile('image')) {
 
             // dd('hi');
@@ -38,7 +39,7 @@ class PostController extends Controller
 
             // $result = $imageService->createIndexAndSave($request->file('image'));
             $result = $imageService->save($request->file('image'));
-
+// dd(gettype($result));
             if ($result === false) {
                 return response()->json([
                     'data' => [
@@ -141,7 +142,7 @@ class PostController extends Controller
         ]);
         return response()->json([
             'message' => 'success',
-            'agency' => Post::latest()->first()
+            'agency' => $post
         ], 200);
     }
 

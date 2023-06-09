@@ -63,7 +63,8 @@ class RoleController extends Controller
         $role->premissions()->sync($input['premissions']);
 
         return response()->json([
-            'message' => 'نقش ' . $role->name .' با موفقیت افزوده شد',
+            'message' => 'نقش با موفقیت افزوده شد',
+            'role' => Role::latest()->first()
         ],200);
 
     }
