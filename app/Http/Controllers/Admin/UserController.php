@@ -50,7 +50,7 @@ class UserController extends Controller
 
         return response()->json([
             'message' => "با موفقیت ثبت شد",
-            'agency' => User::latest()->first()
+            'user' => User::latest()->first()
         ] ,200 );
 
     }

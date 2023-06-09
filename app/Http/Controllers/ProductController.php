@@ -65,7 +65,7 @@ class ProductController extends Controller
 
         return response()->json([
             'message' => 'success',
-            'agency' => Product::latest()->first()
+            'product' => Product::latest()->first()
         ]);
     }
 

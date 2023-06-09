@@ -142,7 +142,7 @@ class PostController extends Controller
         ]);
         return response()->json([
             'message' => 'success',
-            'agency' => $post
+            'post' => $post
         ], 200);
     }
 

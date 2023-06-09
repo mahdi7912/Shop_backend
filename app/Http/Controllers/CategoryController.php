@@ -31,7 +31,7 @@ class CategoryController extends Controller
         $category->save();
         return response()->json([
             'message' => "با موفقیت ثبت شد",
-            'agency' => Category::latest()->first()
+            'category' => Category::latest()->first()
         ], 200);
     }
 
