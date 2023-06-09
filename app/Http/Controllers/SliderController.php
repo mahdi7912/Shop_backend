@@ -55,9 +55,10 @@ class SliderController extends Controller
                     ]
                 ], 403);
             }
-        }
 
         $input['image'] = $result;
+        }
+
         Slider::create([
             'url'  =>  $input['url'],
             'image'  =>  $input['image'],
