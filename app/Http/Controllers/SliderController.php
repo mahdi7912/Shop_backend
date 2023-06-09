@@ -65,8 +65,9 @@ class SliderController extends Controller
 
         return response()->json([
             'data' => [
-                'message' => 'success'
-            ]
+                'message' => 'success',
+                'slider' => Slider::latest()->first()
+             ]
         ], 200);
     }
 
