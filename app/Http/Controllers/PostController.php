@@ -30,7 +30,7 @@ class PostController extends Controller
     {
 
         $input = $request->all();
-        dd($request);
+        // dd($request);
         if ($request->hasFile('image')) {
 
             // dd('hi');

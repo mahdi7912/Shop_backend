@@ -16,6 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        // $user = auth()->user();
+        // dd($user);
 
         $categories = Category::all();
         return new CategoryResource($categories);

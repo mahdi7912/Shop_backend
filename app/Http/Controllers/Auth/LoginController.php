@@ -13,29 +13,34 @@ class LoginController extends Controller
 {
 
 
-    public function index()
-    {
-        # code...
-    }
 
     public function login(Request $request)
     {
 
-        $login = $this->validate($request , [
+        $login = $this->validate($request, [
             'phone' => 'required|string|max:11|min:11|exists:users,phone',
             'password' => 'required|min:8|string',
         ]);
 
 
-        if (!auth()->attempt($login)) {
+        if (auth()->attempt($login)) {
+
+            $user = Auth::user();
+            $token = $user->createToken('Login')->plainTextToken;
+
             return response([
-                'data'=> [
-                'Message' => "invalid data",
-                'status' => 'error',
+                'data' => [
+                    'Message' => "success data",
+                    'user' => auth()->user(),
+                    'token' => $token
                 ]
             ], 403);
-        }
+        } else {
+            return response()->json([
+                'message' => 'invalid data',
+                'status' => 'error'
 
-        return new LoginResource(auth()->user());
+            ], 200);
+        }        // return new LoginResource(auth()->user());
     }
 }

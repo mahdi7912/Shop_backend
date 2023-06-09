@@ -69,6 +69,8 @@ admin routes
 */
 Route::prefix('admin')->group(function () {
 
+    // Route::get('admin-panel' , [LoginController::class , 'login']);
+
     Route::prefix('discounts')->group(function () {
         Route::get('/', [DiscountController::class, 'index']);
         Route::get('create', [DiscountController::class, 'create']);
