@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Routing\Route;
 
-class UpdateRoleRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +23,14 @@ class UpdateRoleRequest extends FormRequest
      */
     public function rules()
     {
-            return [
-
-                'name' => 'required|string|min:3|max:20',
-                'description' => 'required|string|min:3|max:200',
-                'premissions.*' => 'exists:premissions,id'
-
-            ];
-
-
-   }
+        return [
+            'phone' => 'string|max:11|min:11',
+            'email' => 'email',
+            'password' => 'min:8|string',
+            'firstname' => 'string',
+            'lastname' => 'string',
+            'premissions.*' => 'exists:premissions,id',
+            'roles.*' => 'exists:premissions,id'
+        ];
+    }
 }

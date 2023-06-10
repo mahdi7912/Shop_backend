@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserApi;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -92,8 +93,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
+        $input = $request->all();
         $user = User::findorfail($id);
         $user->update([
             'firstname' => $request->firstname,
@@ -102,6 +104,12 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'email' => $request->email
         ]);
+
+        $input['roles'] = $input['roles'] ?? [];
+        $input['premissions'] = $input['premissions'] ?? [];
+
+        $user->roles()->sync($input['roles']);
+        $user->premissions()->sync($input['premissions']);
 
         return response()->json([
             'message' => "با موفقیت ثبت شد",

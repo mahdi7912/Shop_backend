@@ -16,17 +16,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
 
-        if ($user->can('show-category')) {
-        $categories = Category::all();
+            $categories = Category::all();
         return new CategoryResource($categories);
-        }else {
-            return response()->json([
-                'message' => "دسترسی ندارید",
-            ], 403);
-        }
     }
+
+
 
 
 
