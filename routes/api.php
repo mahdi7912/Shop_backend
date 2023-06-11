@@ -69,18 +69,6 @@ admin routes
 */
 Route::prefix('admin')->group(function () {
 
-    // Route::get('admin-panel' , [LoginController::class , 'login']);
-
-    Route::prefix('discounts')->group(function () {
-        Route::get('/', [DiscountController::class, 'index']);
-        Route::get('create', [DiscountController::class, 'create']);
-        Route::post('store', [DiscountController::class, 'store']);
-        Route::get('edit/{discount}', [DiscountController::class, 'edit']);
-        Route::put('update/{discount}', [DiscountController::class, 'update']);
-        Route::delete('delete/{discount}', [DiscountController::class, 'destroy']);
-    });
-
-
     Route::prefix('products')->group(function () {
         Route::get('/', [ProductController::class, 'index']);
         Route::get('create', [ProductController::class, 'create']);

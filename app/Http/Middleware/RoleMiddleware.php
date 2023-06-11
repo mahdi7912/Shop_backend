@@ -16,13 +16,14 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next, $role, $premission = null)
     {
-
+// dd($premission);
         if(!$request->user()->hasRole($role) && $premission == null){
             return response()->json([
                 'message' => "forbidden"
             ], 403);
         }
-        if($premission !== null &&  !$request->user()->can($premission) ){
+
+        if($premission !== null &&  $request->user()->cant($premission) ){
             return response()->json([
                 'message' => "forbidden"
             ], 403);

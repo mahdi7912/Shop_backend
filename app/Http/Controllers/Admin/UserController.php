@@ -95,7 +95,11 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, $id)
     {
+
         $input = $request->all();
+
+        // dd($input['roles']);
+
         $user = User::findorfail($id);
         $user->update([
             'firstname' => $request->firstname,

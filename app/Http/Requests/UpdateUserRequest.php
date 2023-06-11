@@ -30,7 +30,7 @@ class UpdateUserRequest extends FormRequest
             'firstname' => 'string',
             'lastname' => 'string',
             'premissions.*' => 'exists:premissions,id',
-            'roles.*' => 'exists:premissions,id'
+            'roles.*' => 'exists:roles,id'
         ];
     }
 }
