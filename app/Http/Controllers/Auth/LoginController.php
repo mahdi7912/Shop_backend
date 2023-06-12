@@ -30,17 +30,24 @@ class LoginController extends Controller
 
             return response([
                 'data' => [
-                    'Message' => "success data",
+                    'message' => "success data",
                     'user' => auth()->user(),
                     'token' => $token
                 ]
-            ], 403);
+            ], 200);
         } else {
             return response()->json([
                 'message' => 'invalid data',
                 'status' => 'error'
 
-            ], 200);
+            ], 403);
         }        // return new LoginResource(auth()->user());
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json(['message' => 'Logout successful.']);
     }
 }
