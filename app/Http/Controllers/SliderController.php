@@ -6,6 +6,7 @@ use App\Models\Slider;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSliderRequest;
 use App\Http\Requests\UpdateSliderRequest;
+use App\Http\Resources\SliderResource;
 use App\Http\Services\Image\ImageService;
 
 class SliderController extends Controller
@@ -17,18 +18,11 @@ class SliderController extends Controller
      */
     public function index()
     {
-        //
+        $sliders = Slider::all();
+        return  new SliderResource($sliders);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -56,19 +50,21 @@ class SliderController extends Controller
                 ], 403);
             }
 
-        $input['image'] = $result;
+            $input['image'] = $result;
         }
 
         Slider::create([
             'url'  =>  $input['url'],
             'image'  =>  $input['image'],
+            'name'  =>  $input['name'],
+            'description'  =>  $input['description'],
         ]);
 
         return response()->json([
             'data' => [
                 'message' => 'success',
                 'slider' => Slider::latest()->first()
-             ]
+            ]
         ], 200);
     }
 
@@ -80,7 +76,10 @@ class SliderController extends Controller
      */
     public function show(Slider $slider)
     {
-        //
+        return response()->json([
+            'message' => 'success',
+            'post' => $slider
+        ]);
     }
 
     /**
@@ -91,7 +90,10 @@ class SliderController extends Controller
      */
     public function edit(Slider $slider)
     {
-        //
+        return response()->json([
+            'message' => 'success',
+            'post' => $slider
+        ]);
     }
 
     /**
@@ -101,9 +103,41 @@ class SliderController extends Controller
      * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSliderRequest $request, Slider $slider)
+    public function update(UpdateSliderRequest $request, Slider $slider, ImageService $imageService)
     {
-        //
+
+
+        $input = $request->all();
+
+        if ($request->hasFile('image')) {
+
+            if (!empty($slider->image)) {
+
+                $imageService->deleteDirectoryAndFiles($slider->image);
+                $imageService->deleteImage($slider->image);
+            }
+
+
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'sliders');
+
+            $result = $imageService->save($request->file('image'));
+
+            if ($result === false) {
+                return response()->json([
+                    'data' => [
+                        'message' => 'error'
+                    ]
+                ], 403);
+            }
+
+        $input['image'] = $result;
+        }
+
+         $slider->update([$input]);
+        return response()->json([
+            'message' => 'success',
+            'post' => $slider
+        ], 200);
     }
 
     /**

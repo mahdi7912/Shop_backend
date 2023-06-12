@@ -45,7 +45,7 @@ authentication routes
 
     Route::post('login', [LoginController::class, 'login']);
 
-    Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'login']);
+    // Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'logout']);
 
 
 
@@ -84,7 +84,7 @@ Route::prefix('admin')->group(function () {
         Route::post('store', [SliderController::class, 'store']);
         Route::get('edit/{slider}', [SliderController::class, 'edit']);
         Route::get('show/{slider}', [SliderController::class, 'show']);
-        Route::put('update/{slider}', [SliderController::class, 'update']);
+        Route::post('update/{slider}', [SliderController::class, 'update']);
         Route::delete('delete/{slider}', [SliderController::class, 'destroy']);
     });
 
@@ -93,7 +93,7 @@ Route::prefix('admin')->group(function () {
         Route::post('store', [PostController::class, 'store']);
         Route::get('edit/{post}', [PostController::class, 'edit']);
         Route::get('show/{post}', [PostController::class, 'show']);
-        Route::put('update/{post}', [PostController::class, 'update']);
+        Route::post('update/{post}', [PostController::class, 'update']);
         Route::delete('delete/{post}', [PostController::class, 'destroy']);
         Route::post('post-tags/{post}', [PostController::class, 'storeTags']);
     });

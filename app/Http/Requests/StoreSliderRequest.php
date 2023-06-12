@@ -25,7 +25,9 @@ class StoreSliderRequest extends FormRequest
     {
         return [
             'url' => 'string',
-            'image' => 'file|required'
+            'image' => 'file|required',
+            'description' => 'string',
+            'name' => 'required|string',
         ];
     }
 }

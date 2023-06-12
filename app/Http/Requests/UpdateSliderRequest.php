@@ -13,7 +13,7 @@ class UpdateSliderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdateSliderRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'url' => 'string',
+            'image' => 'file',
+            'description' => 'string',
+            'name' => 'string',
         ];
     }
 }

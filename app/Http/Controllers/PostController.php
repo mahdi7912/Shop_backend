@@ -114,10 +114,10 @@ class PostController extends Controller
 
             if (!empty($post->image)) {
                 $imageService->deleteDirectoryAndFiles($post->image);
-                // $imageService->deleteImage($post->image);
+                $imageService->deleteImage($post->image);
             }
 
-            dd($request->image);
+            // dd($request->image);
 
             $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'posts');
 
@@ -134,14 +134,7 @@ class PostController extends Controller
         $input['image'] = $result;
         }
 
-         $post->update([
-            'name'  =>  $input['name'],
-            'summary'  =>  $input['summary'],
-            'description'  =>  $input['description'],
-            'category_id'  =>  $input['category_id'],
-            'user_id'  =>  $input['user_id'],
-            'image'  =>  $input['image'],
-        ]);
+        $post->update($input);
         return response()->json([
             'message' => 'success',
             'post' => $post
