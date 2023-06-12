@@ -67,7 +67,7 @@ Route::get('agencies/show/{agency}', [AgencyController::class, 'show']);
 /*
 admin routes
 */
-Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
+Route::prefix('admin')->group(function () {
 
     Route::prefix('products')->group(function () {
         Route::get('/', [ProductController::class, 'index']);
