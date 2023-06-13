@@ -14,6 +14,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TagController;
 use App\Http\Middleware\Language;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -45,9 +46,7 @@ authentication routes
 
     Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'logout']);
 
-    Route::middleware('auth:sanctum')->get('admin/user', function (Request $request) {
-        return $request->user();
-    });
+    Route::middleware('auth:sanctum')->get('admin/user', [UserController::class , 'show']);
 
 
 
@@ -109,7 +108,7 @@ Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
         Route::get('/', [AgencyController::class, 'index']);
         Route::post('store', [AgencyController::class, 'store']);
         Route::get('edit/{agency}', [AgencyController::class, 'edit']);
-        Route::put('update/{agency}', [AgencyController::class, 'update']);
+        Route::post('update/{agency}', [AgencyController::class, 'update']);
         Route::delete('delete/{agency}', [AgencyController::class, 'destroy']);
     });
 

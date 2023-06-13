@@ -62,12 +62,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        $user = User::findorfail($id);
+
         return response()->json([
             'message' => "success",
-            'user' => $user
+            'user' => $request->user(),
+            'roles' => $request->user()->roles
         ] ,200 );
     }
 
