@@ -54,12 +54,13 @@ authentication routes
 /*
 home outes
 */
+
+Route::get('/sliders', [SliderController::class, 'index']);
 Route::get('/posts', [HomeController::class, 'index']);
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::post('change-lang', [HomeController::class, 'change_lang']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('products/show/{product}', [ProductController::class, 'show']);
-Route::get('/discounts', [DiscountController::class, 'index']);
 Route::get('/agencies', [AgencyController::class, 'index']);
 Route::get('agencies/show/{agency}', [AgencyController::class, 'show']);
 
