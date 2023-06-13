@@ -48,14 +48,7 @@ class ProductController extends Controller
             $input['image'] = $result;
         }
 
-        $product->create([
-            'name' => $input['name'],
-            'price' => $input['price'],
-            'description' => $input['description'],
-            'remaining' => $input['remaining'],
-            'image' => $input['image'],
-            'category_id' => $input['category_id']
-        ]);
+        $product->create($input);
         return response()->json([
             'message' => 'success',
             'product' => Product::latest()->first()

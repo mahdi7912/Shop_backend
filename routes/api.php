@@ -65,6 +65,10 @@ Route::get('products/show/{product}', [ProductController::class, 'show']);
 Route::get('/agencies', [AgencyController::class, 'index']);
 Route::get('agencies/show/{agency}', [AgencyController::class, 'show']);
 
+Route::get('/search-post' , [HomeController::class , 'searchPosts']);
+
+Route::get('/search-product' , [HomeController::class , 'searchProducts']);
+
 
 /*
 admin routes
@@ -77,7 +81,7 @@ Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
         Route::post('store', [ProductController::class, 'store']);
         Route::get('edit/{product}', [ProductController::class, 'edit']);
         Route::get('show/{product}', [ProductController::class, 'show']);
-        Route::put('update/{product}', [ProductController::class, 'update']);
+        Route::post('update/{product}', [ProductController::class, 'update']);
         Route::delete('delete/{product}', [ProductController::class, 'destroy']);
     });
 
