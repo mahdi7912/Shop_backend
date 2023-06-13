@@ -29,9 +29,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('admin/user', function (Request $request) {
-    return $request->user();
-});
+
 
 
 
@@ -45,8 +43,11 @@ authentication routes
 
     Route::post('login', [LoginController::class, 'login']);
 
-    // Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'logout']);
+    Route::middleware('auth:sanctum')->post('/logout', [LoginController::class, 'logout']);
 
+    Route::middleware('auth:sanctum')->get('admin/user', function (Request $request) {
+        return $request->user();
+    });
 
 
 
@@ -68,7 +69,7 @@ Route::get('agencies/show/{agency}', [AgencyController::class, 'show']);
 /*
 admin routes
 */
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
 
     Route::prefix('products')->group(function () {
         Route::get('/', [ProductController::class, 'index']);
