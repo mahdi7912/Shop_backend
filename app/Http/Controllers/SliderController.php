@@ -19,7 +19,13 @@ class SliderController extends Controller
     public function index()
     {
         $sliders = Slider::all();
-        return  new SliderResource($sliders);
+
+        return response()->json([
+            'data' => [
+                'message' => 'success',
+                'sliders' => $sliders
+            ]
+        ], 200);;
     }
 
 
@@ -133,7 +139,7 @@ class SliderController extends Controller
         $input['image'] = $result;
         }
 
-         $slider->update([$input]);
+         $slider->update($input);
         return response()->json([
             'message' => 'success',
             'post' => $slider
