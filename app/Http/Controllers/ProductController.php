@@ -84,13 +84,40 @@ class ProductController extends Controller
     }
 
 
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product, ImageService $imageService)
     {
-        $product->create($request->all());
+
+        $input = $request->all();
+
+        if ($request->hasFile('image')) {
+
+            if (!empty($product->image)) {
+
+                $imageService->deleteDirectoryAndFiles($product->image);
+                $imageService->deleteImage($product->image);
+            }
+
+
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'products');
+
+            $result = $imageService->save($request->file('image'));
+
+            if ($result === false) {
+                return response()->json([
+                    'data' => [
+                        'message' => 'error'
+                    ]
+                ], 403);
+            }
+
+        $input['image'] = $result;
+        }
+
+         $product->update($input);
         return response()->json([
             'message' => 'success',
-            'product' => $product
-        ]);
+            'post' => $product
+        ], 200);
     }
 
     /**
@@ -99,8 +126,9 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product, ImageService $imageService)
     {
+        $imageService->deleteImage($product->image);
         $product->delete();
         return response()->json([
             'message' => 'deleted successfully',

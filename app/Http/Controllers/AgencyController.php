@@ -101,19 +101,39 @@ class AgencyController extends Controller
     }
 
 
-    public function update(UpdateAgencyRequest $request, Agency $agency)
+    public function update(UpdateAgencyRequest $request, Agency $agency, ImageService $imageService)
     {
 
-        $agency->update([
-            "name" => $request->name,
-            "address" => $request->address,
-            "phone" => $request->phone,
-            "email" => $request->email
-        ]);
+        $input = $request->all();
 
+        if ($request->hasFile('image')) {
+
+            if (!empty($agency->image)) {
+
+                $imageService->deleteDirectoryAndFiles($agency->image);
+                $imageService->deleteImage($agency->image);
+            }
+
+
+            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'agencies');
+
+            $result = $imageService->save($request->file('image'));
+
+            if ($result === false) {
+                return response()->json([
+                    'data' => [
+                        'message' => 'error'
+                    ]
+                ], 403);
+            }
+
+        $input['image'] = $result;
+        }
+
+         $agency->update($input);
         return response()->json([
             'message' => 'success',
-            'agency' => $agency
+            'post' => $agency
         ], 200);
     }
 
