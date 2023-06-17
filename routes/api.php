@@ -37,10 +37,10 @@ use Illuminate\Support\Facades\Route;
 /*
 authentication routes
 */
-// Route::prefix('register')->group(function () {
-//     Route::get('/', [RregisterController::class, 'index']);
-//     Route::post('register', [RregisterController::class, 'register']);
-// });
+Route::prefix('register')->group(function () {
+    Route::get('/', [RregisterController::class, 'index']);
+    Route::post('register', [RregisterController::class, 'register']);
+});
 
     Route::post('login', [LoginController::class, 'login']);
 
@@ -57,6 +57,7 @@ home outes
 
 Route::get('/sliders', [SliderController::class, 'index']);
 Route::get('/posts', [HomeController::class, 'index']);
+Route::get('/posts/show/{post}', [PostController::class, 'show']);
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::post('change-lang', [HomeController::class, 'change_lang']);
 Route::get('/products', [ProductController::class, 'index']);

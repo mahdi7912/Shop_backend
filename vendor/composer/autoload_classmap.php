@@ -63,6 +63,7 @@ return array(
     'App\\Http\\Resources\\LoginResource' => $baseDir . '/app/Http/Resources/LoginResource.php',
     'App\\Http\\Resources\\ProductResource' => $baseDir . '/app/Http/Resources/ProductResource.php',
     'App\\Http\\Resources\\RoleResource' => $baseDir . '/app/Http/Resources/RoleResource.php',
+    'App\\Http\\Resources\\SliderResource' => $baseDir . '/app/Http/Resources/SliderResource.php',
     'App\\Http\\Resources\\UserApi' => $baseDir . '/app/Http/Resources/UserApi.php',
     'App\\Http\\Resources\\UserResource' => $baseDir . '/app/Http/Resources/UserResource.php',
     'App\\Http\\Services\\Image\\ImageService' => $baseDir . '/app/Http/Services/Image/ImageService.php',

@@ -15,26 +15,27 @@ class Product extends Model
         'price',
         'pictures',
         'category_id',
-        'image'
+        'image',
+        'discount'
     ];
 
     public function category()
     {
-        $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function images()
     {
-        $this->morphMany( Image::class ,'imageable' );
+        return $this->morphMany( Image::class ,'imageable' );
     }
 
     public function tags()
     {
-        $this->morphMany( Tag::class ,'taggable' );
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 
     public function discounts()
     {
-        $this->morphMany( Discount::class ,'discountable' );
+        return $this->morphMany( Discount::class ,'discountable' );
     }
 }

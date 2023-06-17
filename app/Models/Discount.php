@@ -18,7 +18,7 @@ class Discount extends Model
 
     public function discountable()
     {
-        $this->morphTo();
+        return  $this->morphTo();
     }
 
 

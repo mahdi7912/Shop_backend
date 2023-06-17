@@ -19,8 +19,8 @@ class TagController extends Controller
         $tags = Tag::all();
         return response()->json([
 
-                'message' => 'success',
-                'posts' => $tags
+            'message' => 'success',
+            'posts' => $tags
 
         ]);
     }
@@ -34,11 +34,18 @@ class TagController extends Controller
      */
     public function store(StoreTagRequest $request)
     {
-      $tag = new Tag;
-      $tag->create($request->all());
-      return response()->json([
-        'message' => 'success',
-    ]);
+        $inputs = $request->all();
+        $tag = new Tag;
+
+
+        foreach ($inputs as $input) {
+
+            $tag->insert($input);
+        }
+
+        return response()->json([
+            'message' => 'success',
+        ]);
     }
 
 
@@ -56,7 +63,7 @@ class TagController extends Controller
             'message' => 'success',
             'posts' => $tag
 
-    ]);
+        ]);
     }
 
     /**
@@ -71,8 +78,8 @@ class TagController extends Controller
         $tag = new Tag;
         $tag->create($request->all());
         return response()->json([
-          'message' => 'success',
-      ]);
+            'message' => 'success',
+        ]);
     }
 
     /**

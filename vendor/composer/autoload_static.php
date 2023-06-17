@@ -660,6 +660,7 @@ class ComposerStaticInit0b3e9e737160e4938568f489538095c9
         'App\\Http\\Resources\\LoginResource' => __DIR__ . '/../..' . '/app/Http/Resources/LoginResource.php',
         'App\\Http\\Resources\\ProductResource' => __DIR__ . '/../..' . '/app/Http/Resources/ProductResource.php',
         'App\\Http\\Resources\\RoleResource' => __DIR__ . '/../..' . '/app/Http/Resources/RoleResource.php',
+        'App\\Http\\Resources\\SliderResource' => __DIR__ . '/../..' . '/app/Http/Resources/SliderResource.php',
         'App\\Http\\Resources\\UserApi' => __DIR__ . '/../..' . '/app/Http/Resources/UserApi.php',
         'App\\Http\\Resources\\UserResource' => __DIR__ . '/../..' . '/app/Http/Resources/UserResource.php',
         'App\\Http\\Services\\Image\\ImageService' => __DIR__ . '/../..' . '/app/Http/Services/Image/ImageService.php',

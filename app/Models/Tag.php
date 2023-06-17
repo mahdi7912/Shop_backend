@@ -12,8 +12,13 @@ class Tag extends Model
     protected $fillable = [
         'name'
     ];
-    public function imageabel()
+    public function posts()
     {
-        $this->morphTo();
+        return $this->morphedByMany(Post::class, 'taggable');
+    }
+
+    public function products()
+    {
+        return $this->morphedByMany(Product::class, 'taggable');
     }
 }

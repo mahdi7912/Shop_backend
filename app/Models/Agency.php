@@ -14,16 +14,17 @@ class Agency extends Model
         'phone',
         'address',
         'email',
-        'image'
+        'image',
+        'description'
     ];
 
     public function images()
     {
-        $this->morphMany( Image::class ,'imageable' );
+        return  $this->morphMany( Image::class ,'imageable' );
     }
 
     public function tags()
     {
-        $this->morphMany( Tag::class ,'taggable' );
+        return  $this->morphMany( Tag::class ,'taggable' );
     }
 }

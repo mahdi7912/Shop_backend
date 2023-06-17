@@ -112,8 +112,10 @@ class ProductController extends Controller
 
         $input['image'] = $result;
         }
+        $input['tags'] = $input['tags'] ?? [];
+        $product->tags()->attach($input['tags']);
 
-         $product->update($input);
+        $product->update($input);
         return response()->json([
             'message' => 'success',
             'post' => $product

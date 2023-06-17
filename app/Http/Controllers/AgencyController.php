@@ -51,13 +51,7 @@ class AgencyController extends Controller
             $input['image'] = $result;
         }
 
-        $agency->create([
-            'name'  =>  $input['name'],
-            'phone'  =>  $input['phone'],
-            'address'  =>  $input['address'],
-            'email'  =>  $input['email'],
-            'image'  =>  $input['image'],
-        ]);
+        $agency->create($input);
 
 
         return response()->json([

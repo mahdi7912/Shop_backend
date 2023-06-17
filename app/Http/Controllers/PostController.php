@@ -8,6 +8,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Services\Image\ImageService;
 use App\Models\Image;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -39,7 +40,7 @@ class PostController extends Controller
 
             // $result = $imageService->createIndexAndSave($request->file('image'));
             $result = $imageService->save($request->file('image'));
-// dd(gettype($result));
+            // dd(gettype($result));
             if ($result === false) {
                 return response()->json([
                     'data' => [
@@ -48,9 +49,10 @@ class PostController extends Controller
                 ], 403);
             }
 
-        $input['image'] = $result;
+            $input['image'] = $result;
         }
         $post = new Post;
+
         $post->create([
             'name'  =>  $input['name'],
             'summary'  =>  $input['summary'],
@@ -61,10 +63,11 @@ class PostController extends Controller
         ]);
 
 
+
         return response()->json([
             'data' => [
                 'message' => 'success',
-                'agency' => Post::latest()->first()
+                'post' => Post::latest()->first()->tags()
             ]
         ], 200);
     }
@@ -131,24 +134,22 @@ class PostController extends Controller
                 ], 403);
             }
 
-        $input['image'] = $result;
+            $input['image'] = $result;
         }
 
+        $input['tags'] = $input['tags'] ?? [];
+        $post->tags()->attach($input['tags']);
         $post->update($input);
+
         return response()->json([
             'message' => 'success',
-            'post' => $post
+            'post' => $post->tags()
         ], 200);
     }
 
-    public function storeTags(PostTagsRequest $request, Post $post)
-    {
-        $input = $request->all();
-        $input['tags'] = $input['tags'] ?? [];
-        $post->tags->sync($input['tags']);
-    }
 
-    public function destroy(Post $post , ImageService $imageService)
+
+    public function destroy(Post $post, ImageService $imageService)
     {
         $imageService->deleteImage($post->image);
         $post->delete();

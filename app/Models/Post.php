@@ -12,21 +12,22 @@ class Post extends Model
 
     public function Category()
     {
-        $this->belongsTo(Category::class);
+        return  $this->belongsTo(Category::class);
     }
+
     public function tags()
     {
-        $this->morphMany( Tag::class ,'taggable' );
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 
     public function images()
     {
-        $this->morphMany( Image::class ,'imageable' );
+        return  $this->morphMany( Image::class ,'imageable' );
     }
 
     public function User()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     protected $casts = ['image' => 'array'];

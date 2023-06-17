@@ -57,8 +57,9 @@ class RoleController extends Controller
 
         $input = $request -> all();
 
-        // dd($input['premission_id']);
+        // dd($input['premissions']);
         $role = Role::create($input);
+
         $input['premissions'] = $input['premissions'] ?? [];
         $role->premissions()->sync($input['premissions']);
 

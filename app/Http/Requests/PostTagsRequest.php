@@ -24,7 +24,7 @@ class PostTagsRequest extends FormRequest
     public function rules()
     {
         return [
-            'names*' => 'exists:tags,names'
+            'tags.*' => 'exists:tags,name'
         ];
     }
 }
