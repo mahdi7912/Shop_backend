@@ -12,6 +12,7 @@ class Slider extends Model
         'image',
         'name',
         'description',
-        'url'
+        'url',
+        'type'
     ];
 }

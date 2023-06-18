@@ -63,6 +63,7 @@ class SliderController extends Controller
             'url'  =>  $input['url'],
             'image'  =>  $input['image'],
             'name'  =>  $input['name'],
+            'type'  =>  $input['type'],
             'description'  =>  $input['description'],
         ]);
 

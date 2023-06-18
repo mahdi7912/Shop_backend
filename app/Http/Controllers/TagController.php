@@ -36,12 +36,11 @@ class TagController extends Controller
     {
         $inputs = $request->all();
         $tag = new Tag;
+dd($inputs);
+        $tag->insert($inputs);
 
-
-        foreach ($inputs as $input) {
-
-            $tag->insert($input);
-        }
+        // foreach ($inputs as $input) {
+        // }
 
         return response()->json([
             'message' => 'success',
