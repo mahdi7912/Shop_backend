@@ -181,6 +181,7 @@ class ComposerStaticInit0b3e9e737160e4938568f489538095c9
         'C' => 
         array (
             'Cron\\' => 5,
+            'Conner\\Tagging\\' => 15,
             'Carbon\\' => 7,
         ),
         'B' => 
@@ -577,6 +578,10 @@ class ComposerStaticInit0b3e9e737160e4938568f489538095c9
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
         ),
+        'Conner\\Tagging\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rtconner/laravel-tagging/src',
+        ),
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
@@ -795,6 +800,17 @@ class ComposerStaticInit0b3e9e737160e4938568f489538095c9
         'Carbon\\TranslatorImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/TranslatorImmutable.php',
         'Carbon\\TranslatorStrongTypeInterface' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/TranslatorStrongTypeInterface.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Conner\\Tagging\\Console\\Commands\\GenerateTagGroup' => __DIR__ . '/..' . '/rtconner/laravel-tagging/src/Console/Commands/GenerateTagGroup.php',
+        'Conner\\Tagging\\Contracts\\TaggableContract' => __DIR__ . '/..' . '/rtconner/laravel-tagging/src/Contracts/TaggableContract.php',
+        'Conner\\Tagging\\Events\\TagAdded' => __DIR__ . '/..' . '/rtconner/laravel-tagging/src/Events/TagAdded.php',
+        'Conner\\Tagging\\Events\\TagRemoved' => __DIR__ . '/..' . '/rtconner/laravel-tagging/src/Events/TagRemoved.php',
+        'Conner\\Tagging\\Model\\Tag' => __DIR__ . '/..' . '/rtconner/laravel-tagging/src/Model/Tag.php',
+        'Conner\\Tagging\\Model\\TagGroup' => __DIR__ . '/..' . '/rtconner/laravel-tagging/src/Model/TagGroup.php',
+        'Conner\\Tagging\\Model\\Tagged' => __DIR__ . '/..' . '/rtconner/laravel-tagging/src/Model/Tagged.php',
+        'Conner\\Tagging\\Providers\\LumenTaggingServiceProvider' => __DIR__ . '/..' . '/rtconner/laravel-tagging/src/Providers/LumenTaggingServiceProvider.php',
+        'Conner\\Tagging\\Providers\\TaggingServiceProvider' => __DIR__ . '/..' . '/rtconner/laravel-tagging/src/Providers/TaggingServiceProvider.php',
+        'Conner\\Tagging\\Taggable' => __DIR__ . '/..' . '/rtconner/laravel-tagging/src/Taggable.php',
+        'Conner\\Tagging\\TaggingUtility' => __DIR__ . '/..' . '/rtconner/laravel-tagging/src/TaggingUtility.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/DayOfMonthField.php',

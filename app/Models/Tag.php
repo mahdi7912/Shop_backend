@@ -9,8 +9,8 @@ class Tag extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name'
+    protected $guarded = [
+        'id'
     ];
     public function posts()
     {
@@ -21,4 +21,7 @@ class Tag extends Model
     {
         return $this->morphedByMany(Product::class, 'taggable');
     }
+
+
+    // protected $casts = ['name' => 'array'];
 }

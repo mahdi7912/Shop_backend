@@ -20,7 +20,7 @@ class TagController extends Controller
         return response()->json([
 
             'message' => 'success',
-            'posts' => $tags
+            'tags' => $tags
 
         ]);
     }
@@ -35,13 +35,13 @@ class TagController extends Controller
     public function store(StoreTagRequest $request)
     {
         $inputs = $request->all();
+
         $tag = new Tag;
-dd($inputs);
-        $tag->insert($inputs);
 
-        // foreach ($inputs as $input) {
-        // }
+      foreach ($inputs['name'] as $name) {
 
+        $tag->create(['name' => $name]);
+      }
         return response()->json([
             'message' => 'success',
         ]);

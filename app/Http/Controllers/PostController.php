@@ -67,7 +67,7 @@ class PostController extends Controller
         return response()->json([
             'data' => [
                 'message' => 'success',
-                'post' => Post::latest()->first()->tags()
+                'post' => Post::latest()->first()
             ]
         ], 200);
     }
@@ -120,7 +120,6 @@ class PostController extends Controller
                 $imageService->deleteImage($post->image);
             }
 
-            // dd($request->image);
 
             $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'posts');
 
@@ -143,7 +142,7 @@ class PostController extends Controller
 
         return response()->json([
             'message' => 'success',
-            'post' => $post->tags()
+            'post' => $post
         ], 200);
     }
 

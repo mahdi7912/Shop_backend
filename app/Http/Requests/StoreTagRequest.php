@@ -25,7 +25,7 @@ class StoreTagRequest extends FormRequest
     {
         return [
 
-            'name.*' => 'required|min:3|max:20',
+            'name.*' => 'required|unique:tags,name|max:15',
         ];
     }
 }
