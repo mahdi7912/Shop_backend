@@ -61,6 +61,7 @@ return array(
     'App\\Http\\Resources\\CategoryResource' => $baseDir . '/app/Http/Resources/CategoryResource.php',
     'App\\Http\\Resources\\DiscountResource' => $baseDir . '/app/Http/Resources/DiscountResource.php',
     'App\\Http\\Resources\\LoginResource' => $baseDir . '/app/Http/Resources/LoginResource.php',
+    'App\\Http\\Resources\\PostResource' => $baseDir . '/app/Http/Resources/PostResource.php',
     'App\\Http\\Resources\\ProductResource' => $baseDir . '/app/Http/Resources/ProductResource.php',
     'App\\Http\\Resources\\RoleResource' => $baseDir . '/app/Http/Resources/RoleResource.php',
     'App\\Http\\Resources\\SliderResource' => $baseDir . '/app/Http/Resources/SliderResource.php',

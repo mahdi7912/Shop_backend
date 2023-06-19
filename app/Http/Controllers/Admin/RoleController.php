@@ -103,7 +103,8 @@ class RoleController extends Controller
         $input = $request -> all();
         $role->update([
             'name' => $request->name,
-            'description' => $request->description
+            'description' => $request->description,
+            'status' => $request->status
         ]);
 
         $input['premissions'] = $input['premissions'] ?? [];

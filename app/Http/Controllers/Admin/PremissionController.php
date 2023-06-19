@@ -38,7 +38,8 @@ class PremissionController extends Controller
 
         $premission->create([
             'name' => $request->name,
-            'description' => $request->description
+            'description' => $request->description,
+            'status' => $request->status
         ]);
         return response()->json([
             'message' => 'دسترسی ' . $premission->name .' با موفقیت اضافه شد',
@@ -74,7 +75,8 @@ class PremissionController extends Controller
     {
         $premission->update([
             'name' => $request->name,
-            'description' => $request->description
+            'description' => $request->description,
+            'status' => $request->status
         ]);
         return response()->json([
             'message' => 'دسترسی ' . $premission->name .' با موفقیت بروزرسانی شد',

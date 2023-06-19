@@ -6,6 +6,7 @@ use App\Http\Requests\PostTagsRequest;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Http\Resources\PostResource;
 use App\Http\Services\Image\ImageService;
 use App\Models\Image;
 use App\Models\Tag;
@@ -20,11 +21,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return response()->json([
-
-            'message' => 'success',
-            'posts' => $posts,
-        ]);
+        return new PostResource($posts);
     }
 
     public function store(StorePostRequest $request, ImageService $imageService)
@@ -53,6 +50,8 @@ class PostController extends Controller
         }
         $post = new Post;
 
+
+
         $post->create([
             'name'  =>  $input['name'],
             'summary'  =>  $input['summary'],
@@ -60,6 +59,7 @@ class PostController extends Controller
             'category_id'  =>  $input['category_id'],
             'user_id'  =>  $input['user_id'],
             'image'  =>  $input['image'],
+            'status'  =>  $input['status']
         ]);
 
 
@@ -82,7 +82,7 @@ class PostController extends Controller
     {
         return response()->json([
             'message' => 'success',
-            'post' => $post->tags,
+            'post' => $post,
             'tags' => $post->tags
         ]);
     }
@@ -140,7 +140,10 @@ class PostController extends Controller
 
         $input['tags'] = $input['tags'] ?? [];
         $post->tags()->attach($input['tags']);
+
+
         $post->update($input);
+
 
         return response()->json([
             'message' => 'success',
