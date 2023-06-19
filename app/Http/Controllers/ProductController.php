@@ -18,6 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         $product  = Product::all();
+
         return new ProductResource($product);
     }
 
@@ -65,7 +66,8 @@ class ProductController extends Controller
     {
         return response()->json([
             'message' => 'success',
-            'product' => $product
+            'product' => $product,
+            'tags' => $product->tags
         ]);
     }
 

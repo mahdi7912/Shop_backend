@@ -82,7 +82,8 @@ class PostController extends Controller
     {
         return response()->json([
             'message' => 'success',
-            'post' => $post
+            'post' => $post->tags,
+            'tags' => $post->tags
         ]);
     }
 
@@ -96,7 +97,8 @@ class PostController extends Controller
     {
         return response()->json([
             'message' => 'success',
-            'post' => $post
+            'post' => $post,
+            'tags' => $post->tags
         ]);
     }
 
