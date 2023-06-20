@@ -139,7 +139,7 @@ class PostController extends Controller
         }
 
         $input['tags'] = $input['tags'] ?? [];
-        $post->tags()->attach($input['tags']);
+        $post->tags()->sync($input['tags']);
 
 
         $post->update($input);
@@ -147,7 +147,7 @@ class PostController extends Controller
 
         return response()->json([
             'message' => 'success',
-            'post' => $post
+            'post' => $post->tags
         ], 200);
     }
 

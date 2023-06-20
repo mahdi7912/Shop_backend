@@ -23,11 +23,12 @@ class ProductResource extends ResourceCollection
                     'name' => $product->name,
                     'description' => $product->description,
                     'status' => $product->status,
-                    'remaining' => $product->summary,
-                    'price' => $product->user_id,
+                    'remaining' => $product->remaining,
+                    'price' => $product->price,
                     'discount' => $product->discount,
                     'category_id' => $product->category_id,
-                    'tags' => $product->tags
+                    'tags' => $product->tags,
+                    'image' => $product->image
                ];
            }),
        ];
