@@ -124,7 +124,7 @@ Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
 
 
     Route::prefix('categories')->group(function () {
-        Route::get('/', [CategoryController::class, 'index']);
+        Route::get('/', [CategoryController::class, 'index'])->middleware('role:sanctum');
         Route::post('store', [CategoryController::class, 'store']);
         Route::get('edit/{category}', [CategoryController::class, 'edit']);
         Route::get('show/{category}', [CategoryController::class, 'show']);

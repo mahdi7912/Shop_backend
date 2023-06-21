@@ -16,17 +16,21 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        // $user = auth()->user();
+        // if ($user->can('مشاهده دسته بندی ها')) {
+        //     # code...
+
 
             $categories = Category::all();
-        return new CategoryResource($categories);
+            return new CategoryResource($categories);
 
 
             return response()->json([
                 'message' => "error",
             ], 403);
-
-
+        // }
     }
+
 
 
 

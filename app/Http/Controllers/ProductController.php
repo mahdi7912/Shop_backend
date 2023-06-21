@@ -120,7 +120,8 @@ class ProductController extends Controller
         $product->update($input);
         return response()->json([
             'message' => 'success',
-            'product' => $product->tags
+            'product' => $product,
+            'tags' => $product->tags
         ], 200);
     }
 

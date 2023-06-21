@@ -32,23 +32,21 @@ trait HasPremissionsTrait
     public function hasPremissionThroughRole($premission)
     {
         foreach ($premission->roles as $role) {
-            if ($this->role->contains($role)) {
+            if ($this->roles->contains($role)) {
                 return true;
-            }else {
-                return false;
             }
         }
+        return false;
     }
 
     public function hasRole(...$roles)
     {
         foreach ($roles as $role) {
-            if ($this->roles->contains('name' , $role)) {
+            if ($this->roles->contains('name', $role)) {
                 return true;
-            }else{
-                return false;
             }
-
         }
+        return false;
     }
+
 }
