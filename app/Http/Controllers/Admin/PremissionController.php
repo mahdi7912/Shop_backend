@@ -34,15 +34,20 @@ class PremissionController extends Controller
      */
     public function store(StorePremissionRequest $request)
     {
+        $inputs = $request->all();
+
         $premission = new Premission;
 
-        $premission->create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'status' => $request->status
-        ]);
+        foreach ($inputs as $input) {
+            foreach ($input as $name ) {
+
+                $premission->create($name);
+            }
+
+        }
+
         return response()->json([
-            'message' => 'دسترسی ' . $premission->name .' با موفقیت اضافه شد',
+            'message' => 'دسترسی با موفقیت اضافه شد',
 
             'premission' => Premission::latest()->first()
         ], 200);
@@ -79,7 +84,7 @@ class PremissionController extends Controller
             'status' => $request->status
         ]);
         return response()->json([
-            'message' => 'دسترسی ' . $premission->name .' با موفقیت بروزرسانی شد',
+            'message' => 'دسترسی با موفقیت بروزرسانی شد',
             'premission' => $premission
         ], 200);
     }
@@ -94,7 +99,7 @@ class PremissionController extends Controller
     {
         $premission->delete();
         return response()->json([
-            'message' => 'دسترسی ' . $premission->name .' با موفقیت حذف شد',
+            'message' => 'دسترسی ' . $premission->name . ' با موفقیت حذف شد',
 
         ], 200);
     }

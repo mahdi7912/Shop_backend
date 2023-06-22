@@ -24,8 +24,8 @@ class StorePremissionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'string|required|unique:premissions,name',
-            'description' => 'string|required'
+            'name.*' => 'required|unique:premissions,name',
+            'description.*' => 'required'
         ];
     }
 }

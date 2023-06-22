@@ -124,7 +124,7 @@ Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
 
 
     Route::prefix('categories')->group(function () {
-        Route::get('/', [CategoryController::class, 'index'])->middleware('role:sanctum');
+        Route::get('/', [CategoryController::class, 'index'])->middleware('role:');
         Route::post('store', [CategoryController::class, 'store']);
         Route::get('edit/{category}', [CategoryController::class, 'edit']);
         Route::get('show/{category}', [CategoryController::class, 'show']);
@@ -160,106 +160,7 @@ Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
         Route::get('edit/{premission}', [TagController::class, 'edit']);
         Route::put('update/{premission}', [TagController::class, 'update']);
         Route::delete('delete/{premission}', [TagController::class, 'destroy']);
+
     });
+
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-other site routes
-
-categories index = /categories
-posts index = /posts
-discounts index = /discounts
-products index = /products
-
-
-admin panel routes
-/admin(
-    /user(
-   index =  /
-    create(openning the create form page) = /create
-    store(creating new user) = /store
-    edit(openning the update form page) = /edit/{}
-    update (updating user) = /update/{}
-    delete = /delete/{}
-    )
-    /discounts(
-    index =  /
-    create(openning the create form page) = /create
-    store(creating new discount) = /store
-    edit(openning the update form page) = /edit/{}
-    update (updating discount) = /update/{}
-    delete = /delete/{}
-    )
-    /products(
-    index =  /
-    create(openning the create form page) = /create
-    store(creating new product) = /store
-    edit(openning the update form page) = /edit/{}
-    update (updating product) = /update/{}
-    delete = /delete/{}
-    )
-    /categories(
-    index =  /
-    create(openning the create form page) = /create
-    store(creating new product) = /store
-    edit(openning the update form page) = /edit/{}
-    update (updating product) = /update/{}
-    delete = /delete/{}
-    )
-    /agencies(
-    index =  /
-    create(openning the create form page) = /create
-    store(creating new agency) = /store
-    edit(openning the update form page) = /edit/{}
-    update (updating agency) = /update/{}
-    delete = /delete/{}
-    )
-    /posts(
-    index =  /
-    create(openning the create form page) = /create
-    store(creating new post) = /store
-    edit(openning the update form page) = /edit/{}
-    update (updating post) = /update/{}
-    delete = /delete/{}
-    )
-    /roles(
-    index =  /
-    create(openning the create form page) = /create
-    store(creating new role) = /store
-    edit(openning the update form page) = /edit/{}
-    update (updating role) = /update/{}
-    update-premission (updating roles premissions) = /update-premissions/
-    delete = /delete/{}
-    )
-    /premissions(
-    index =  /
-    create(openning the create form page) = /create
-    store(creating new premissions) = /store
-    edit(openning the update form page) = /edit/{}
-    update (updating premissions) = /update/{}
-    delete = /delete/{}
-    )
-
-)
-
-
-
-*/
