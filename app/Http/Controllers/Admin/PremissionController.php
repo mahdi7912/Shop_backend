@@ -97,6 +97,7 @@ class PremissionController extends Controller
      */
     public function destroy(Premission $premission)
     {
+        // dd(auth()->user());
         $premission->delete();
         return response()->json([
             'message' => 'دسترسی ' . $premission->name . ' با موفقیت حذف شد',

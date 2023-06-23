@@ -76,90 +76,90 @@ admin routes
 Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
 
     Route::prefix('products')->group(function () {
-        Route::get('/', [ProductController::class, 'index']);
-        Route::get('create', [ProductController::class, 'create']);
-        Route::post('store', [ProductController::class, 'store']);
-        Route::get('edit/{product}', [ProductController::class, 'edit']);
-        Route::get('show/{product}', [ProductController::class, 'show']);
-        Route::post('update/{product}', [ProductController::class, 'update']);
-        Route::delete('delete/{product}', [ProductController::class, 'destroy']);
+        Route::get('/', [ProductController::class, 'index'])->middleware('role:boss');
+        Route::get('create', [ProductController::class, 'create'])->middleware('role:boss');
+        Route::post('store', [ProductController::class, 'store'])->middleware('role:boss');
+        Route::get('edit/{product}', [ProductController::class, 'edit'])->middleware('role:boss');
+        Route::get('show/{product}', [ProductController::class, 'show'])->middleware('role:boss');
+        Route::post('update/{product}', [ProductController::class, 'update'])->middleware('role:boss');
+        Route::delete('delete/{product}', [ProductController::class, 'destroy'])->middleware('role:boss');
     });
 
     Route::prefix('sliders')->group(function () {
-        Route::get('/', [SliderController::class, 'index']);
-        Route::post('store', [SliderController::class, 'store']);
-        Route::get('edit/{slider}', [SliderController::class, 'edit']);
-        Route::get('show/{slider}', [SliderController::class, 'show']);
-        Route::post('update/{slider}', [SliderController::class, 'update']);
-        Route::delete('delete/{slider}', [SliderController::class, 'destroy']);
+        Route::get('/', [SliderController::class, 'index'])->middleware('role:boss');
+        Route::post('store', [SliderController::class, 'store'])->middleware('role:boss');
+        Route::get('edit/{slider}', [SliderController::class, 'edit'])->middleware('role:boss');
+        Route::get('show/{slider}', [SliderController::class, 'show'])->middleware('role:boss');
+        Route::post('update/{slider}', [SliderController::class, 'update'])->middleware('role:boss');
+        Route::delete('delete/{slider}', [SliderController::class, 'destroy'])->middleware('role:boss');
     });
 
     Route::prefix('posts')->group(function () {
-        Route::get('/', [PostController::class, 'index']);
-        Route::post('store', [PostController::class, 'store']);
-        Route::get('edit/{post}', [PostController::class, 'edit']);
-        Route::get('show/{post}', [PostController::class, 'show']);
-        Route::post('update/{post}', [PostController::class, 'update']);
-        Route::delete('delete/{post}', [PostController::class, 'destroy']);
-        Route::post('post-tags/{post}', [PostController::class, 'storeTags']);
+        Route::get('/', [PostController::class, 'index'])->middleware('role:boss');
+        Route::post('store', [PostController::class, 'store'])->middleware('role:boss');
+        Route::get('edit/{post}', [PostController::class, 'edit'])->middleware('role:boss');
+        Route::get('show/{post}', [PostController::class, 'show'])->middleware('role:boss');
+        Route::post('update/{post}', [PostController::class, 'update'])->middleware('role:boss');
+        Route::delete('delete/{post}', [PostController::class, 'destroy'])->middleware('role:boss');
+        Route::post('post-tags/{post}', [PostController::class, 'storeTags'])->middleware('role:boss');
     });
 
 
     Route::prefix('agencies')->group(function () {
-        Route::get('/', [AgencyController::class, 'index']);
-        Route::post('store', [AgencyController::class, 'store']);
-        Route::get('edit/{agency}', [AgencyController::class, 'edit']);
-        Route::post('update/{agency}', [AgencyController::class, 'update']);
-        Route::delete('delete/{agency}', [AgencyController::class, 'destroy']);
+        Route::get('/', [AgencyController::class, 'index'])->middleware('role:boss');
+        Route::post('store', [AgencyController::class, 'store'])->middleware('role:boss');
+        Route::get('edit/{agency}', [AgencyController::class, 'edit'])->middleware('role:boss');
+        Route::post('update/{agency}', [AgencyController::class, 'update'])->middleware('role:boss');
+        Route::delete('delete/{agency}', [AgencyController::class, 'destroy'])->middleware('role:boss');
     });
 
 
     Route::prefix('users')->group(function () {
-        Route::get('/', [UserController::class, 'index']);
-        Route::post('store', [UserController::class, 'store']);
-        Route::get('edit/{user}', [UserController::class, 'edit']);
-        Route::put('update/{user}', [UserController::class, 'update']);
-        Route::delete('delete/{user}', [UserController::class, 'destroy']);
+        Route::get('/', [UserController::class, 'index'])->middleware('role:boss');
+        Route::post('store', [UserController::class, 'store'])->middleware('role:boss');
+        Route::get('edit/{user}', [UserController::class, 'edit'])->middleware('role:boss');
+        Route::put('update/{user}', [UserController::class, 'update'])->middleware('role:boss');
+        Route::delete('delete/{user}', [UserController::class, 'destroy'])->middleware('role:boss');
     });
 
 
     Route::prefix('categories')->group(function () {
-        Route::get('/', [CategoryController::class, 'index'])->middleware('role:');
-        Route::post('store', [CategoryController::class, 'store']);
-        Route::get('edit/{category}', [CategoryController::class, 'edit']);
-        Route::get('show/{category}', [CategoryController::class, 'show']);
-        Route::put('update/{category}', [CategoryController::class, 'update']);
-        Route::delete('delete/{category}', [CategoryController::class, 'destroy']);
+        Route::get('/', [CategoryController::class, 'index'])->middleware('role:boss');
+        Route::post('store', [CategoryController::class, 'store'])->middleware('role:boss');
+        Route::get('edit/{category}', [CategoryController::class, 'edit'])->middleware('role:boss');
+        Route::get('show/{category}', [CategoryController::class, 'show'])->middleware('role:boss');
+        Route::put('update/{category}', [CategoryController::class, 'update'])->middleware('role:boss');
+        Route::delete('delete/{category}', [CategoryController::class, 'destroy'])->middleware('role:boss');
     });
 
 
     Route::prefix('roles')->group(function () {
-        Route::get('/', [RoleController::class, 'index']);
-        Route::get('create', [RoleController::class, 'create']);
-        Route::post('store', [RoleController::class, 'store']);
-        Route::get('edit/{role}', [RoleController::class, 'edit']);
-        Route::put('update/{role}', [RoleController::class, 'update']);
-        Route::delete('delete/{role}', [RoleController::class, 'destroy']);
+        Route::get('/', [RoleController::class, 'index'])->middleware('role:boss');
+        Route::get('create', [RoleController::class, 'create'])->middleware('role:boss');
+        Route::post('store', [RoleController::class, 'store'])->middleware('role:boss');
+        Route::get('edit/{role}', [RoleController::class, 'edit'])->middleware('role:boss');
+        Route::put('update/{role}', [RoleController::class, 'update'])->middleware('role:boss');
+        Route::delete('delete/{role}', [RoleController::class, 'destroy'])->middleware('role:boss');
     });
 
 
     Route::prefix('premissions')->group(function () {
-        Route::get('/', [PremissionController::class, 'index']);
-        Route::get('create', [PremissionController::class, 'create']);
-        Route::post('store', [PremissionController::class, 'store']);
-        Route::get('edit/{premission}', [PremissionController::class, 'edit']);
-        Route::put('update/{premission}', [PremissionController::class, 'update']);
-        Route::post('delete/{premission}', [PremissionController::class, 'destroy']);
+        Route::get('/', [PremissionController::class, 'index'])->middleware('role:boss');
+        Route::get('create', [PremissionController::class, 'create'])->middleware('role:boss');
+        Route::post('store', [PremissionController::class, 'store'])->middleware('role:boss');
+        Route::get('edit/{premission}', [PremissionController::class, 'edit'])->middleware('role:boss');
+        Route::put('update/{premission}', [PremissionController::class, 'update'])->middleware('role:boss');
+        Route::delete('delete/{premission}', [PremissionController::class, 'destroy'])->middleware('role:boss');
     });
 
 
     Route::prefix('tags')->group(function () {
-        Route::get('/', [TagController::class, 'index']);
-        Route::get('create', [TagController::class, 'create']);
-        Route::post('store', [TagController::class, 'store']);
-        Route::get('edit/{premission}', [TagController::class, 'edit']);
-        Route::put('update/{premission}', [TagController::class, 'update']);
-        Route::delete('delete/{premission}', [TagController::class, 'destroy']);
+        Route::get('/', [TagController::class, 'index'])->middleware('role:boss');
+        Route::get('create', [TagController::class, 'create'])->middleware('role:boss');
+        Route::post('store', [TagController::class, 'store'])->middleware('role:boss');
+        Route::get('edit/{premission}', [TagController::class, 'edit'])->middleware('role:boss');
+        Route::put('update/{premission}', [TagController::class, 'update'])->middleware('role:boss');
+        Route::delete('delete/{premission}', [TagController::class, 'destroy'])->middleware('role:boss');
 
     });
 
