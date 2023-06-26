@@ -83,7 +83,8 @@ class PostController extends Controller
         return response()->json([
             'message' => 'success',
             'post' => $post,
-            'tags' => $post->tags
+            'tags' => $post->tags,
+            'author' => $post->user_id
         ]);
     }
 

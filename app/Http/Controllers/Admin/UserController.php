@@ -37,7 +37,7 @@ class UserController extends Controller
     {
         $user = new User;
 
-        $input = $request -> all();
+        $input = $request->all();
 
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
@@ -52,8 +52,7 @@ class UserController extends Controller
         return response()->json([
             'message' => "با موفقیت ثبت شد",
             'user' => User::latest()->first()
-        ] ,200 );
-
+        ], 200);
     }
 
     /**
@@ -69,7 +68,7 @@ class UserController extends Controller
             'message' => "success",
             'user' => $request->user(),
             'roles' => $request->user()->roles
-        ] ,200 );
+        ], 200);
     }
 
     /**
@@ -84,7 +83,7 @@ class UserController extends Controller
         return response()->json([
             'message' => "success",
             'user' => $user
-        ] ,200 );
+        ], 200);
     }
 
     /**
@@ -99,27 +98,52 @@ class UserController extends Controller
 
         $input = $request->all();
 
-        // dd($input['roles']);
-
         $user = User::findorfail($id);
-        $user->update([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'phone' => $request->phone,
-            'password' => Hash::make($request->password),
-            'email' => $request->email
-        ]);
 
-        $input['roles'] = $input['roles'] ?? [];
-        $input['premissions'] = $input['premissions'] ?? [];
+        if (!empty($request->password)) {
 
-        $user->roles()->sync($input['roles']);
-        $user->premissions()->sync($input['premissions']);
+            $user->update([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'phone' => $request->phone,
+                'password' => Hash::make($request->password),
+                'email' => $request->email
+            ]);
 
-        return response()->json([
-            'message' => "با موفقیت ثبت شد",
-            'product' => $user
-        ] ,200 );
+            //cheking if roles and premissions exist
+            $input['roles'] = $input['roles'] ?? [];
+            $input['premissions'] = $input['premissions'] ?? [];
+
+
+            //syncing roles and premissions
+            $user->roles()->sync($input['roles']);
+            $user->premissions()->sync($input['premissions']);
+
+            return response()->json([
+                'message' => "با موفقیت ثبت شد",
+                'product' => $user
+            ], 200);
+
+        } else {
+
+            $user->update([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'phone' => $request->phone,
+                'email' => $request->email
+            ]);
+
+            $input['roles'] = $input['roles'] ?? [];
+            $input['premissions'] = $input['premissions'] ?? [];
+
+            $user->roles()->sync($input['roles']);
+            $user->premissions()->sync($input['premissions']);
+
+            return response()->json([
+                'message' => "با موفقیت ثبت شد",
+                'product' => $user
+            ], 200);
+        }
     }
 
     /**
@@ -135,6 +159,6 @@ class UserController extends Controller
         $user->delete();
         return response()->json([
             'message' => "با موفقیت حذف شد"
-        ] ,200 );
+        ], 200);
     }
 }

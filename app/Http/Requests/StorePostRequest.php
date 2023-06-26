@@ -27,8 +27,8 @@ class StorePostRequest extends FormRequest
         return [
             'url' => 'string',
             'name' => 'required|string|min:3|max:20',
-            'description' => 'required|string|min:3|max:500',
-            'summary' => 'required|string|min:3|max:100',
+            'description' => 'required|string|min:3|max:1000',
+            'summary' => 'required|string|min:3|max:300',
         ];
     }
 }
