@@ -67,7 +67,8 @@ class UserController extends Controller
         return response()->json([
             'message' => "success",
             'user' => $request->user(),
-            'roles' => $request->user()->roles
+            'roles' => $request->user()->roles,
+            'premissions' => $request->user()->premissions
         ], 200);
     }
 
@@ -82,7 +83,9 @@ class UserController extends Controller
         $user = User::findorfail($id);
         return response()->json([
             'message' => "success",
-            'user' => $user
+            'user' => $user,
+            'roles' => $user->roles,
+            'premissions' => $user->premissions
         ], 200);
     }
 

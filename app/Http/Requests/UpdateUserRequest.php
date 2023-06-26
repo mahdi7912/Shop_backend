@@ -26,7 +26,6 @@ class UpdateUserRequest extends FormRequest
         return [
             'phone' => 'string|max:11|min:11',
             'email' => 'email',
-            'password' => 'min:8|string',
             'firstname' => 'string',
             'lastname' => 'string',
             'premissions.*' => 'exists:premissions,id',

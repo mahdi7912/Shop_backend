@@ -27,7 +27,8 @@ class UserApi extends ResourceCollection
                     'lastname' => $user->lastname,
                     'email' => $user->email,
                     'phone' => $user->phone,
-                    'roles' => $user->roles
+                    'roles' => $user->roles,
+                    'premissions' => $user->premissions
                 ];
             }),
         ];
