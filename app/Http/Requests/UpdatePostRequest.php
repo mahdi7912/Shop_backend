@@ -26,7 +26,7 @@ class UpdatePostRequest extends FormRequest
 
         return [
             'name' => 'string|min:3|max:20',
-            'description' => 'string|min:3|max:1000',
+            'description' => 'string|min:3',
             'summary' => 'string|min:3|max:300',
             'category_id' => 'exists:categories,id',
             'user_id' => 'exists:users,id',

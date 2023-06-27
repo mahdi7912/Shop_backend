@@ -25,7 +25,7 @@ class UpdateSliderRequest extends FormRequest
     {
         return [
             'url' => 'string',
-            'image' => 'file',
+            // 'image' => 'file',
             'description' => 'string',
             'name' => 'string',
         ];
