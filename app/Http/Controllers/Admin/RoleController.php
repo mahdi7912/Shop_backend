@@ -114,6 +114,7 @@ class RoleController extends Controller
 
             'message' => 'نقش ' . $role->name .' با موفقیت بروزرسانی شد',
             'role' => $role,
+            'premissions' => $role->premissions
         ], 200);
     }
 

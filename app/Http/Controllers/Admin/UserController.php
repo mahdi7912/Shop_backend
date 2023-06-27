@@ -124,7 +124,9 @@ class UserController extends Controller
 
             return response()->json([
                 'message' => "با موفقیت ثبت شد",
-                'product' => $user
+                'product' => $user,
+                'roles' => $user->roles,
+                'premissions' => $user->premissions,
             ], 200);
 
         } else {
